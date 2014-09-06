@@ -1,0 +1,16 @@
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\ChordMaster.Presenters.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\ChordMaster.Presenters.pdb
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.ApplicationBlock.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.xml
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.csprojResolveAssemblyReference.cache
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.pdb
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\ChordMaster.Presenters.dll
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\ChordMaster.Presenters.pdb
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.ApplicationBlock.dll
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.dll
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Debug\DotNetOpenAuth.xml
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.csprojResolveAssemblyReference.cache
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.dll
+D:\dev\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Debug\ChordMaster.Presenters.pdb

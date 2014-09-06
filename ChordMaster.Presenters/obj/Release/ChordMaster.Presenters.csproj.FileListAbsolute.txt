@@ -1,0 +1,8 @@
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Release\ChordMaster.Presenters.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Release\ChordMaster.Presenters.pdb
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Release\DotNetOpenAuth.ApplicationBlock.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Release\DotNetOpenAuth.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\bin\Release\DotNetOpenAuth.xml
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Release\ChordMaster.Presenters.csprojResolveAssemblyReference.cache
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Release\ChordMaster.Presenters.dll
+C:\Users\mephisto\Documents\Visual Studio 2010\WebSites\ChordMaster\ComposerCompanion\ChordMaster.Presenters\obj\Release\ChordMaster.Presenters.pdb

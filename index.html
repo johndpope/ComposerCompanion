@@ -1,0 +1,1445 @@
+﻿<!DOCTYPE html X-UA-Compatible: IE=Edge>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <link href="Scripts/jquery.mobile-1.2.0-rc.2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="mycustomtheme.min.css" />
+    <!--<script src="Scripts/jquery-1.8.2.min.js"></script>-->
+    <script src="../Shared/jquery-1.9.1.js"></script>
+    <!--<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>-->
+    <script src="../Shared/jquery-ui-1.10.2.custom.min.js"></script>
+    <!--  <script src="Scripts/jquery.mobile-1.2.0-rc.2.min.js"></script>
+    <link href="Styles/jquery.mobile-1.2.0.css" rel="stylesheet" />-->
+    <link href="../Shared/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" />
+    <link href="../Shared/jquery.mobile.structure-1.3.0.css" rel="stylesheet" />
+    <script src="../Shared/jquery.mobile-1.3.0.js"></script>
+    <link href="Styles/jqm-docs.css" rel="stylesheet" />
+    <link href="Styles/zocial.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
+    <!--  <script src="http://js.live.net/v5.0/wl.js"></script-->
+    >
+    <!-- VexFlow Uncompiled Sources -->
+    <script src="Scripts/BaseLib.js"></script>
+    <script src="Vexflow/trunk/vexflow.js"></script>
+    <!--    <script src="MultiSelect/jquery.bgiframe.min.js"></script>
+    <script src="MultiSelect/jquery.multiSelect.js"></script>
+    <link href="MultiSelect/jquery.multiSelect.css" rel="stylesheet" />-->
+    <script src="Data/chord_data.js"></script>
+    <script src="Data/voices.js"></script>
+    <script src="Data/datasourcegenerator.js"></script>
+    <script src="Vexflow/trunk/vextab/vextab.js"></script>
+    <script src="Scripts/Ext/VexTab/tuninig_ext.js"></script>
+    <script src="Scripts/MusicXmlReader.js"></script>
+    <script src="Midi/trunk/js/DOMLoader.XMLHttp.js"></script>
+    <script src="Midi/trunk/js/DOMLoader.script.js"></script>
+    <script src="Midi/trunk/js/MIDI.audioDetect.js"></script>
+    <script src="Midi/trunk/js/MIDI.loadPlugin.js"></script>
+    <script src="Midi/trunk/js/MIDI.Plugin.js"></script>
+    <script src="Midi/trunk/js/MIDI.Player.js"></script>
+    <script src="Midi/trunk/js/MusicTheory.Synesthesia.js"></script>
+    <script src="Midi/trunk/js/Widgets.Loader.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/stream.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/midifile.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/replayer.js"></script>
+    <script src="Midi/trunk/js/VersionControl.Base64.js"></script>
+    <link href="../Shared/GanttChart.css" rel="stylesheet" />
+    <script src="Midi/trunk/js/lib/base64binary.js"></script>
+    <script src="Scripts/ScoreManager.js"></script>
+    <link href="VexTab/tabdiv.css" rel="stylesheet" />
+    <script src="../Shared/ArrayExt.js"></script>
+    <script src="Scripts/ComposerCompanion.js"></script>
+    <script src="Scripts/CCMenu.js"></script>
+    <script src="../Shared/jSync/jSync.js"></script>
+    <script src="../Shared/GanttChart.js"></script>
+    <link href="Data/stylesheet.css" rel="stylesheet" type="text/css" />
+    <script src="../Shared/controls/NoteGrid.js"></script>
+    <link href="../Shared/controls/NoteGrid.css" rel="stylesheet" />
+    <script src="Scripts/BankEntry.js"></script>
+    <script src="Scripts/RecordingSessionTrack.js"></script>
+    <script src="Scripts/MusicDocument.js"></script>
+    <script src="Scripts/CompositeEntry.js"></script>
+    <script src="Scripts/Midi.js"></script>
+    <script src="../Shared/FileSaver.js"></script>
+    <link href="../Shared/controls/CanvasDrawer.css" rel="stylesheet" />
+    <script src="../Shared/controls/CanvasDrawer.js"></script>
+    <script src="Scripts/Mephistowa.MIDI.js"></script>
+    <script src="Scripts/Mephistowa.Rhythm.js"></script>
+    <title>Composer Companion</title>
+    <style>
+        body .zocial
+        {
+            margin: 8px 4px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div data-mini="true" data-role="page" id="cc">
+        <div data-role="panel" id="masterpanel" data-display="overlay" data-position-fixed="true">
+            <!-- panel content goes here -->
+            <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Controls</li>
+                <li>
+                    <div data-role="controlgroup" data-type="horizontal">
+                        <a href="#" id="newbtn" data-role="button">New</a>
+                        <a href="#" id="savebtn" data-role="button">Save</a>
+                    </div>
+                </li>
+                <li>
+                    <label for="masterVolume">Master Volume:</label>
+                    <input type="range" name="masterVolume" id="masterVolume" data-highlight="true" min="-5" step="0.01" max="5" value="2" />
+
+                    <label for="masterVolume">Availble Threads:</label>
+                    <input type="range" name="availableThreads" id="availableThreads" data-highlight="true" min="1" max="16" value="2" />
+                </li>
+            </ul>
+        </div>
+        <div data-role="panel" id="midipanel" data-display="overlay" data-position-fixed="true">
+            <div id="midilistspace"></div>
+        </div>
+        <div data-role="panel" id="quickinputpanel" data-display="overlay" data-position-fixed="true">
+            <label for="textarea-1">Quick Input:</label>
+            <textarea cols="40" rows="8" name="textarea-1" id="quickInputArea"></textarea>
+            <p>
+                <a href="#" data-role="button" data-inline="true" id="quickInputAddBtn">Add</a>
+            </p>
+        </div>
+        <div data-role="panel" id="rhythmpanel" data-display="overlay" data-position-fixed="true">
+            <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Rhythms</li>
+                <li>
+                    <div data-role="fieldcontain">
+                        <label for="rhythemname">Text input:</label>
+                        <input type="text" name="rhythemname" id="rhythemname" value="" />
+                        <div id="rhythmaddspace"></div>
+                        <a href="#" id="addrhythmbtn" data-role="button" data-icon="plus" data-iconpos="notext">Add Rhythm</a>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview" data-filter="true" id="rhythmlist" data-filter-placeholder="Search rhythms..." data-inset="true">
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div data-role="panel" id="rhythmsForEntries" data-display="overlay" data-position-fixed="true">
+            <div data-role="fieldcontain">
+                <ul data-role="listview" data-filter="true" id="rhythmSearch" data-filter-placeholder="Search rhythms..." data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="panel" id="rhythmApplyPanel" data-position="right" data-display="overlay" data-position-fixe="true">
+            <div id="rhythmApplySpace"></div>
+        </div>
+        <div data-role="panel" id="rhythemoptionspanel" data-display="overlay" data-position-fixed="true">
+            <div id="rhythmoptionspanelspace"></div>
+        </div>
+        <div data-role="panel" id="soundfontpanel" data-display="overlay" data-position-fixed="true">
+            <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Sound Fonts</li>
+                <li>
+                    <div data-role="collapsible">
+                        <h4>Sound Fonts</h4>
+                        <input type="file" id="files" name="files[]" multiple />
+                        <div id="soundfontspace"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div data-role="panel" id="midiInstrummentAssignment" data-display="overlay" data-position-fixed="true">
+            <div id="midiInstrumentsForAssignment"></div>
+        </div>
+        <div data-role="panel" id="scalesofinterest" data-position-fixed="true">
+            <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                <li>
+                    <div data-mini="true" data-role="fieldcontain" id="Div3">
+                        <div data-mini="true" data-role="controlgroup" data-type="horizontal">
+                            <a href="#" data-mini="true" data-role="button" data-icon="gear" id="selectmorescales">Click to Select Scales of Interest</a>
+                        </div>
+                        <div id="scale_filter">
+                            <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                                <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Selected Scales</li>
+                                <li>
+                                    <div data-mini="true" data-role="fieldcontain" id="selectedscales">
+                                        <ul data-mini="true" data-role="listview" data-theme="g" id="selectscaleslist" data-inset="true" style="white-space: nowrap;">
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li id="toselect">
+                                    <div data-mini="true" data-role="fieldcontain">
+                                        <ul data-mini="true" data-role="listview" id="scales_">
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- /panel -->
+
+        <div data-mini="true" data-role="header" data-theme="f">
+            <h1>Composer Companion
+            </h1>
+        </div>
+        <!-- /header -->
+
+        <div data-role="panel" id="chordgenpanel" data-position-fixed="true">
+            <!-- panel content goes here -->
+            <div id="chordoptionspace"></div>
+        </div>
+        <!-- /panel -->
+        <div data-role="popup" id="ganttChartMenu" data-theme="d">
+            <div data-role="collapsible-set"
+                data-theme="b"
+                data-content-theme="c"
+                data-collapsed-icon="arrow-r"
+                data-expanded-icon="arrow-d"
+                style="margin: 0; width: 250px;">
+                <div data-role="collapsible" data-inset="false">
+                    <h2>Farm animals</h2>
+                    <ul data-role="listview">
+                        <li><a href="#" data-rel="dialog">Chicken</a></li>
+                        <li><a href="#" data-rel="dialog">Cow</a></li>
+                        <li><a href="#" data-rel="dialog">Duck</a></li>
+                        <li><a href="#" data-rel="dialog">Sheep</a></li>
+                    </ul>
+                </div>
+                <!-- /collapsible -->
+            </div>
+        </div>
+        <div data-role="popup" id="itemPopupMenu" data-theme="d">
+            <ul data-role="listview" data-inset="true" style="min-width: 210px;" data-theme="d">
+                <li data-role="divider" data-theme="e">Choose an action</li>
+                <li><a href="#" id="itemMenuSelect">Un/Select</a></li>
+                <li><a href="#" id="itemMenuSelectAll">Un/Select All</a></li>
+                <li><a href="#" id="itemMenuCreateComposite">Create Composite Bank</a></li>
+                <li><a href="#" id="itemMenuRemove">Remove</a></li>
+            </ul>
+        </div>
+        <div data-role="popup" id="compositeBankOptions" data-theme="d">
+            <div id="compositeBankOptionsSpace"></div>
+        </div>
+        <div data-mini="true" data-role="content" role="main">
+            <div class="content-over">
+                <h2>Bank Palette</h2>
+                <div data-mini="true" data-role="controlgroup" data-type="horizontal">
+                    <a href="#" data-mini="true" data-role="button" id="closeAllBanks">Close All</a>
+                    <a href="#" data-mini="true" data-role="button" id="createComposite">Create Composite</a>
+                </div>
+                <!--      <div data-role="collapsible">
+                    
+                     <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c" id="Ul2">
+                            <li>-->
+
+                <!--    </li>
+                            <li class="bank">-->
+                <div class="bankspace"></div>
+                <!--    </li>
+                        </ul>
+                </div>-->
+                <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
+                    <div data-role="collapsible">
+                        <!--class="content-secondary"-->
+                        <h2>Create Banks/Chords</h2>
+                        <div id="toggle">
+                        </div>
+                        <div data-mini="true" data-role="fieldcontain" id="melodybuttons">
+                            <div data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-mini="true" data-role="button" id="addmelodybtn">Add</a>
+                                <a href="#" data-mini="true" data-role="button" id="quickMelodyBtn">Select Chord</a>
+                                <a href="#" data-mini="true" data-role="button" id="clearmelodybtn">Clear</a>
+                                <a href="#" data-mini="true" data-role="button" class="playmelodystaff" id="playmelodybtn">Play</a>
+                                <a href="#" data-mini="true" data-role="button" id="addtobank">Create Bank</a>
+                            </div>
+                            <div>
+                                <div class="chunksection">
+                                    <fieldset data-mini="true" data-role="controlgroup" id="keygroup_melody">
+                                    </fieldset>
+                                </div>
+                                <div class="chunksection">
+                                    <div data-mini="true" data-role="fieldcontain">
+                                        <fieldset data-mini="true" data-role="controlgroup" id="keygroup_accidentals">
+                                        </fieldset>
+                                    </div>
+                                    <div data-mini="true" data-role="fieldcontain">
+                                        <fieldset data-mini="true" data-role="controlgroup" id="keygroup_octaves" data-type="horizontal">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="chunksection">
+                                    <div data-mini="true" data-role="fieldcontain" id="melodyarea">
+                                        <div data-role="controlgroup" class="melodylist" data-theme="a">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;">
+                                    <div data-mini="true" data-role="fieldcontain" id="Div1">
+                                        <canvas id="melodystaffcanvas" height="200" width="400" />
+                                        <div data-role="controlgroup" class="melodylist" id="melodylist" data-theme="a">
+                                        </div>
+                                    </div>
+                                    <a href="#" data-mini="true" data-inline="true" data-role="button" class="playmelodystaff" id="playmelodystaff">Play</a>
+                                    <div data-mini="true" data-inline="true" data-role="fieldcontain">
+                                        <fieldset data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                            <legend>Clef : </legend>
+                                            <input type="radio" name="CleffChoice" id="RadioTreble" value="treble" checked="checked" />
+                                            <label for="RadioTreble">Treble</label>
+                                            <input type="radio" name="CleffChoice" id="RadioBass" value="bass" />
+                                            <label for="RadioBass">Bass</label>
+                                            <input type="radio" name="CleffChoice" id="RadioAlto" value="alto" />
+                                            <label for="RadioAlto">Alto</label>
+                                            <input type="radio" name="CleffChoice" id="RadioTenor" value="tenor" />
+                                            <label for="RadioTenor">Tenor</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div data-mini="true" data-role="fieldcontain">
+                                    <fieldset data-mini="true" data-role="controlgroup" id="keygroup_triads" data-type="horizontal">
+                                    </fieldset>
+                                </div>
+                                <div data-mini="true" data-role="fieldcontain">
+                                    <fieldset data-mini="true" data-role="controlgroup" id="keygroup_triadsext" data-type="horizontal">
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!--      </li>
+                            </ul>-->
+                        </div>
+                        <!--<div data-mini="true" data-mini="true" data-role="fieldcontain">
+                                <fieldset data-mini="true" data-mini="true" data-role="controlgroup" data-type="horizontal" id="octaveshift1">
+                                    <legend>Octave Shift : </legend>
+
+                                </fieldset>
+                            </div>-->
+
+
+                        <div data-mini="true" data-role="fieldcontain" id="Div4">
+                            <ul data-mini="true" data-role="lisview" id="helplist" data-inset="true" data-theme="c">
+                                <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Directions</li>
+                                <li>Press the Melody button</li>
+                                <li>Cick a Key[A-G] with an optional accidental(&#x266d; | &#x266f; | &#x266e;) and select the octave for the note.</li>
+                                <li>Press the Add for more notes in the chord.</li>
+                                <li>Options will appear in the list.</li>
+                                <li>Press these options to see them on a staff.</li>
+                            </ul>
+                        </div>
+                        <div id="togglehelp">
+                            <h3>Help?</h3>
+                        </div>
+                    </div>
+                    <div data-role="collapsible">
+                        <!-- class="content-primary"-->
+                        <h2>Chord Alternates</h2>
+                        <!-- <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c">
+                            <li data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Chord Alternates
+                            </li>
+                            <li>-->
+                        <div data-mini="true" data-role="fieldcontain" data-inline="true">
+                            <fieldset data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                <!--<legend>clef : </legend>-->
+                                <input type="radio" name="CleffChoice2" id="RadioTreble2" value="treble" checked="checked" />
+                                <label for="RadioTreble2">Treble</label>
+                                <input type="radio" name="CleffChoice2" id="RadioBass2" value="bass" />
+                                <label for="RadioBass2">Bass</label>
+                                <input type="radio" name="CleffChoice2" id="RadioAlto2" value="alto" />
+                                <label for="RadioAlto2">Alto</label>
+                                <input type="radio" name="CleffChoice2" id="RadioTenor2" value="tenor" />
+                                <label for="RadioTenor2">Tenor</label>
+                            </fieldset>
+                        </div>
+                        <div data-mini="true" data-role="controlgroup" data-type="horizontal" data-inline="true">
+                            <a href="#" data-mini="true" data-role="button" id="addtobankFromOptions">Add Chord</a>
+                            <a href="#" data-mini="true" data-role="button" id="addtobankFromOptionsScale">Add Scale</a>
+                            <a href="#" data-mini="true" data-role="button" class="playstaffnotes" id="A1">Play</a>
+                            <!--  <a href="#" data-mini="true" data-role="button" class="playmelodystaff" id="A4">Play</a>-->
+                        </div>
+                        <div>
+                            <canvas width="400" height="200" id="staffnotes"></canvas>
+                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span id="chord_call_name"></span>
+                                </td>
+                                <td style="padding-left: 100px;">
+                                    <span id="scale_call_name"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div data-mini="true" data-role="fieldcontain">
+                            <fieldset data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                <!--<legend>Bias:</legend>-->
+                                <input type="radio" name="radio-choice-bias" id="biasflat" value="choice-1" />
+                                <label for="biasflat">&#x266d;</label>
+                                <input type="radio" name="radio-choice-bias" id="biassharp" value="choice-2" checked="checked" />
+                                <label for="biassharp">&#x266f;</label>
+                                <label for="scaleselection">Scales </label>
+                                <select data-mini="true" name="scaleselection" id="scaleselection">
+                                </select>
+                            </fieldset>
+                        </div>
+                        <!--     </li>
+                            <li>-->
+                        <div data-mini="true" data-role="fieldcontain" id="Div5">
+                            <div id="paginginfo"></div>
+                            <div data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-icon="arrow-l" data-mini="true" data-role="button" id="pagingback">Back</a>
+                                <a href="#" data-icon="arrow-r" data-mini="true" data-role="button" id="pagingforward">Forward</a>
+                                <select name="scaleselection" id="pagesize">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div data-mini="true" data-role="fieldcontain" id="results">
+                            <ul data-mini="true" data-role="listview" data-theme="g" id="matchingresults">
+                            </ul>
+                        </div>
+                        <!--   </li>
+                             <li data-mini="true" data-mini="true" data-role="divider" role="heading" class="ui-bar-f">Chord Progressions</li>
+                    <li>
+                        <div data-mini="true" data-mini="true" data-role="fieldcontain" id="chordprogressionssection">
+                        </div>
+                    </li>
+                        </ul> -->
+                    </div>
+                    <div data-role="collapsible">
+                        <h2>General Settings</h2>
+                        <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c" id="toplist">
+                            <li data-role="divider">
+                                <div data-role="controlgroup" data-type="horizontal">
+                                    <a href="#masterpanel" data-role="button" data-icon="grid" data-iconpos="notext" data-theme="c" data-inline="true">Master Panel</a>
+                                    <a href="#soundfontpanel" data-role="button" data-icon="star" data-iconpos="notext" data-theme="c" data-inline="true">Sound Fonts</a>
+                                    <a href="#scalesofinterest" data-role="button" data-icon="search" data-iconpos="notext" data-theme="c" data-inline="true">Scales of Interest</a>
+                                    <a href="#midipanel" data-role="button" data-icon="grid" data-iconpos="notext" data-theme="c" data-inline="true">Midis</a>
+                                    <select id="instrumentsCC"></select>
+                                    <a href="#midiInstrummentAssignment" data-role="button" data-icon="grid" data-iconpos="notext" data-theme="c" data-inline="true">Midi Instrument Assignments</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-role="collapsible">
+                        <h2>Rhythm</h2>
+                        <ul data-mini="true" data-role="listview" data-inset="false" data-theme="c" id="Ul3">
+                            <li>
+                                <div id="rhythmspace"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-role="collapsible">
+                        <h2>Midi</h2>
+                        <ul data-mini="true" data-role="listview" data-inset="true" data-theme="c" id="Ul1">
+                            <li>
+                                <div>
+                                    <input type="file" id="midiFiles" name="files[]" multiple data-inline="true" />
+                                    <a href="#midipanel" data-role="button" data-icon="grid" data-theme="c" data-inline="true">Midi Files</a>
+                                    <a href="#" data-role="button" data-icon="plus" id="getselectedmidinotes" data-theme="c" data-inline="true">Create Bank</a>
+                                    <a href="#" data-role="button" data-icon="arrow-r" id="playmidifile" data-theme="c" data-inline="true">Play</a>
+                                    <a href="#" data-role="button" data-icon="arrow-r" id="playmidifilesection" data-theme="c" data-inline="true">Play Section</a>
+                                </div>
+                                <div class="midiSpace" id="midiSpace"></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div data-role="collapsible">
+                        <h2>Tracks</h2>
+                        <ul data-mini="true" data-role="listview" data-inset="false" data-theme="c" id="Ul4">
+                            <li style="padding-left: 0px;">
+                                <div data-mini="true" data-role="controlgroup" data-type="horizontal">
+                                    <a href="#" data-mini="true" data-iconpos="notext"
+                                        data-inline="true" data-icon="plus" data-role="button" id="addTrack">Add</a>
+                                </div>
+                                <div id="tracks" style="padding-bottom: 20px;"></div>
+                            </li>
+                            <li>
+                                <fieldset data-role="controlgroup" style="display: inline;" data-mini="true" data-type="horizontal">
+                                    <legend>Time Signature:</legend>
+                                    <select name="select-native-8" id="timesignatureTopSelect" data-inline="true" data-iconpos="left">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" selected>4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
+                                    <select name="select-native-9" id="timesignatureBottomSelect" data-inline="true" data-iconpos="left">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" selected>4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
+                                </fieldset>
+                                <div data-mini="true" data-role="controlgroup" data-type="horizontal" style="display: inline" data-inline="true">
+                                    <label for="text-1">Tempo:</label>
+                                    <input type="text" name="text-1" id="recordingtempo" value="" />
+                                </div>
+                                <div data-mini="true" data-role="controlgroup" data-type="horizontal" style="display: inline" data-inline="true">
+                                    <label for="stepCounter">Step</label>
+                                    <input type="number" name="stepCounter" id="stepCounter" value="0" />
+                                </div>
+                                <div data-mini="true" style="display: inline" data-role="controlgroup" data-type="horizontal">
+                                    <a href="#quickinputpanel" data-mini="true" data-role="button" id="quickInput">QuickInput</a>
+                                    <a href="#" data-mini="true" data-role="button" id="startrecord">Start</a>
+                                    <a href="#" data-mini="true" data-role="button" id="stoprecord">Stop</a>
+                                    <a href="#" data-mini="true" data-role="button" id="playbackcurrentsessionbtn">Play Back</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- /grid-b -->
+        <div data-mini="true" data-role="footer">
+            <h3>Master of Chords</h3>
+        </div>
+    </div>
+    <!-- /footer -->
+    <!-- /content -->
+    <script src="Scripts/ChordMaster.Reader.js"></script>
+    <script src="../SFMaster/script/utility/class.js"></script>
+    <script src="../SFMaster/script/utility/file.js"></script>
+    <script src="../SFMaster/script/utility/Riff.js"></script>
+    <script>
+
+        var scripting = new script.utility.class({ relativeLocation: "../SFMaster/" });
+        scripting.app("script.soundfont.app");
+
+        for (var i = 0; i < key.length; i++) {
+            var input = $("<input>", {
+                type: "radio", name: "radio_keygroup", id: "radio_keygroup" + i, value: key[i], click: function (s) {
+                    refresh();
+                }
+            });
+            var label = $("<label>", { "for": "radio_keygroup" + i, text: key[i] });
+            $("#keygroup").append(input).append(label);
+        }
+        for (var i = 0; i < key.length; i++) {
+            var input = $("<input>", {
+                type: "radio", name: "keygroup_melody", id: "keygroup_melody" + i, value: key[i], click: (function (s, e) {
+                    selectedmelody = this;
+                    //$("input[name=keygroup_melody]").each(function (s, e) {
+                    //    var ischecked = $(e).attr('checked');
+                    //    if (ischecked) {
+                    //        selectedmelody = $(e).val();
+
+                    //    }
+                    //});
+                }.bind(key[i]))
+            });
+            var label = $("<label>", { "for": "keygroup_melody" + i, text: key[i] });
+            $("#keygroup_melody").append(input).append(label);
+        }
+        selectedmelody = null;
+        selectedaccidental = "";
+        $("#keygroup_melody").trigger("refresh");
+        $("#keygroup").trigger("refresh");
+        var melodylist = [];
+        $("#clearmelodybtn").click(function () {
+            melodylist = [];
+            refreshmelodylist();
+            $("#matchingresults").html("");
+            if (getrootbase() == null) { return; }
+            var v = calculateV();
+            var scales = getSelectedScales();
+            refreshOptionsList(v, scales);
+        });
+        $("#addmelodybtn").click(function () {
+            if (!findmelody(melodylist, selectedmelody, selectedaccidental.trim(), selectedoctave)) {
+                var obj = { key: selectedmelody, accidental: selectedaccidental.trim(), octave: selectedoctave };
+                melodylist.push(obj);
+                refreshmelodylist();
+                if (getrootbase() == null) { return; }
+                var v = calculateV();
+                var scales = getSelectedScales();
+                refreshOptionsList(v, scales);
+            }
+        });
+        $("#quickMelodyBtn").click(function () {
+            var triad = selectedTriad;
+            var triadExt = selectedTriadExt;
+            if (!triad || !triadExt || !selectedmelody)
+                return;
+            var obj = { key: selectedmelody, accidental: selectedaccidental.trim(), octave: selectedoctave };
+            melodylist = [];
+            //melodylist.push(obj);
+            var v = [];
+            var attach = function (x) {
+                v.push(x);
+                var offset = parseInt(x, 12);
+                var midinote = $cc.runtime.convertToMidiNote(obj);
+                var melodynote = $cc.runtime.convertToMelodyNote(midinote + offset);
+                melodylist.push(melodynote);
+            }
+            triad.triad.forEach(attach);
+            if (triad.triad.length == 0) {
+                melodylist.push(obj);
+            }
+            triadExt.ext.forEach(attach);
+            var scales = getSelectedScales();
+            refreshmelodylist();
+            refreshOptionsList(v, scales);
+        });
+
+        $("#addtobank").click(function () {
+            if (!melodylist || melodylist.length == 0) {
+                return;
+            }
+            if (getrootbase() == null) { return; }
+
+            var base_int = library[getrootbase() + getaccidentalsvalue()];
+            var melodylistclone = clone(melodylist);
+            var v = calculateV();
+            $cc.runtime.addToBank({
+                melodylist: melodylistclone,
+                v: v,
+                rootbase: getrootbase(),
+                base_int: base_int,
+                accidentals: getaccidentalsvalue()
+            });
+        });
+
+        var convertToMelodyNote = function (x) {
+            var octave = Math.floor(x / 12) - 1;
+            var note = x % 12;
+            for (var i in library) {
+                if (library[i] == note) {
+                    note = i;
+                    break
+                }
+            }
+            return {
+                accidental: note[1] || "",
+                octave: octave,
+                key: note[0]
+            }
+        }
+        $cc.runtime.convertToMelodyNote = convertToMelodyNote;
+        $("#addtobankFromOptions").click(function () {
+            if (!melodylist || melodylist.length == 0) {
+                return;
+            }
+            if (getrootbase() == null) { return; }
+
+
+            var base_int = library[getrootbase() + getaccidentalsvalue()];
+            var scalenotes = chordmaster.get_chordmidinotes();
+            var bank = {
+                rootbase: getrootbase(),
+                accidentals: getaccidentalsvalue(),
+                base_int: base_int,
+                melodylist: scalenotes.select(function (x) { return convertToMelodyNote(x); }),
+                v: chordmaster._lastChoords.smartinfo.voice.select(function (x) { return converttoBase12(x) })
+            }
+            $cc.runtime.addToBank(bank);
+
+        });
+        $("#addtobankFromOptionsScale").click(function () {
+            //
+            if (!melodylist || melodylist.length == 0) {
+                return;
+            }
+            if (getrootbase() == null) { return; }
+
+
+            var base_int = library[getrootbase() + getaccidentalsvalue()];
+            var scalenotes = chordmaster.get_scalemidinotes();
+            var scaleInformation = chordmaster.get_scale(chordmaster._lastChoords.selectedScale);
+
+            var startNote = convertToMelodyNote(scaleInformation[0]);
+            var bank = {
+                rootbase: convertToMelodyNote(scalenotes[0]).key,
+                accidentals: convertToMelodyNote(scalenotes[0]).accidental,
+                base_int: base_int,
+                melodylist: scalenotes.select(function (x) { return convertToMelodyNote(x); }),
+                v: scaleInformation.currentScale.base12.select(function (x) { return converttoBase12(x) })
+            }
+            $cc.runtime.addToBank(bank);
+
+        });
+
+        var clone = function (obj) {
+            // Handle the 3 simple types, and null or undefined
+            if (null == obj || "object" != typeof obj) return obj;
+
+            // Handle Date
+            if (obj instanceof Date) {
+                var copy = new Date();
+                copy.setTime(obj.getTime());
+                return copy;
+            }
+            if (obj instanceof String) {
+                return obj;
+            }
+            if (obj instanceof Number) {
+                return obj;
+            }
+            // Handle Array
+            if (obj instanceof Array) {
+                var copy = [];
+                for (var i = 0, len = obj.length; i < len; i++) {
+                    copy[i] = clone(obj[i]);
+                }
+                return copy;
+            }
+
+            // Handle Object
+            if (obj instanceof Object) {
+                var copy = {};
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+                }
+                return copy;
+            }
+
+            throw new Error("Unable to copy obj! Its type isn't supported.");
+        }
+        $cc.runtime.clone = clone;
+        var refresh = function () {
+            if (getrootbase()) {
+                var v = calculateV();
+                var scales = getSelectedScales();
+                refreshOptionsList(v, scales);
+            }
+        }
+        var melodystaffcanvas = new Vex.Drawer("melodystaffcanvas");
+        var generateCode = function (list) {
+            var vextab_code = "tabstave notation=true  tablature=false clef=" + selectedcleffchoice + " \r\n" +
+                              "notes ;1 :w (";
+            for (var i = 0; i < list.length; i++) {
+                vextab_code += list[i].key + list[i].accidental + "/" + list[i].octave;
+                if (i != list.length - 1) {
+                    vextab_code += ".";
+                }
+            }
+            vextab_code += ") \r\n";
+            return vextab_code;
+        }
+        $cc.runtime.generateCode = generateCode;
+
+        var selectedcleffchoice = "treble";
+        $("input[name=CleffChoice]").click(function () {
+            selectedcleffchoice = $(this).val();
+
+            refresh();
+        });
+        var selectedcleffchoice2 = "treble";
+        $("input[name=CleffChoice2]").click(function () {
+            selectedcleffchoice2 = $(this).val();
+            chordmaster.renderNotes();
+        });
+        var currentpage = 0;
+        var lastpage = 0;
+        var pagingsize = 5;
+        $("#pagingback").click(function () {
+            currentpage--;
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            refresh();
+        });
+        $("#pagingforward").click(function () {
+            currentpage++;
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            refresh();
+        });
+        $("#pagesize").change(function (e) {
+            pagingsize = parseInt($("#pagesize").val());
+            refresh();
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            refresh();
+        });
+
+        var refreshOptionsList = function (v, scales) {
+            var matches = chordmaster.findMatches(v, scales, currentpage, pagingsize);
+            var sorted = melodylist.sort(function (a, b) {
+                var val_a = library[a.key + a.accidental] + a.octave * 12;
+                var val_b = library[b.key + b.accidental] + b.octave * 12;
+                return val_a - val_b;
+            });
+            var code = generateCode(sorted)
+            melodystaffcanvas.draw(code);
+            $("#matchingresults").html("");
+            var added = [];
+            for (var i = matches.length; i--;) {
+                var _Text = tonicetext(matches[i]);
+                if (added.indexOf(_Text) == -1) {
+                    added.push(_Text);
+                    $("#matchingresults").append($("<li>", {
+                        click:
+                        (function () {
+                            $("#scaleselection").html("");
+                            var possible_scales = [];
+                            var selectedscales = getSelectedScales();
+                            for (var i = 0; i < this.smartinfo.scales.length; i++) {
+                                if (shouldShow(selectedscales, [this.smartinfo.scales[i]]) || selectedscales.length == 0)
+                                    //if (possible_scales.indexOf(getScaleName(this.smartinfo.scales[i])) == -1)
+                                {
+                                    var option = $("<option>",
+                                         {
+                                             value: this.smartinfo.scales[i],
+                                             text: scaleText(this, this.smartinfo.scales[i]),//getScaleName(this.smartinfo.scales[i]),
+                                             selected: i == 0 ? true : false
+                                         })
+                                    $("#scaleselection").append(option);
+                                    possible_scales.push(getScaleName(this.smartinfo.scales[i]));
+                                }
+                            }
+                            this.selectedScale = this.smartinfo.scales[0];
+                            $("#scaleselection").match = this;
+                            chordmaster.renderNotes(this, this.selectedScale);
+                            $('#scaleselection').val(this.smartinfo.scales[i]);
+                            $('#scaleselection').selectmenu("refresh");
+                            $("#chord_call_name").text(keyText(this, this.selectedScale));
+                            $("#scale_call_name").text(scaleText(this, this.selectedScale));
+                        }).bind(matches[i])
+                    }).append($("<a>", { style: "font-size:.75em", text: _Text, href: "#" })));
+                }
+            }
+            $("#matchingresults").listview("refresh");
+        }
+
+        $cc.runtime.refreshOptionsList = refreshOptionsList;
+
+        $("#scaleselection").bind("change", function (event, ui) {
+            if (chordmaster.get_lastChords()) {
+                chordmaster.get_lastChords().selectedScale = $("#scaleselection").val();
+                $("#scale_call_name").text(scaleText(this, $("#scaleselection").val()));
+                chordmaster.renderNotes();
+            }
+        });
+        var shouldShow = function (scales, _scales) {
+            for (var i = scales.length; i--;) {
+                for (var j = _scales.length; j--;) {
+                    if (scales[i] == getScaleName(_scales[j])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        var getScaleName = function (id) {
+            for (var i in bosslist) {
+                for (var j = bosslist[i].length; j--;) {
+                    if (bosslist[i][j].id == id) {
+                        return bosslist[i][j].official;
+                    }
+                }
+            }
+            return "[Unknown]";
+        }
+        var getScale = function (id) {
+            for (var i in bosslist) {
+                for (var j = bosslist[i].length; j--;) {
+                    if (bosslist[i][j].id == id) {
+                        return bosslist[i][j];
+                    }
+                }
+            }
+        }
+        var tonicetext = function (obj) {
+            return obj.smartinfo.isInversion ? obj.smartinfo.name.split("or")[0] + " " + " ".nth(obj.smartinfo.inversion) + " Inv" : obj.smartinfo.name.split("or")[0] + " [" + getBaseRoot(obj._info.col2.data) + "]";
+        };
+        $cc.runtime.tonicetext = tonicetext;
+        var keyText = function (obj, scaleId) {
+            if (obj.smartinfo.isInversion) {
+                var scale = getScale(scaleId);
+                var offset = obj.smartinfo.voice[obj.smartinfo.voice.length - obj.smartinfo.inversion]
+                var base_int = library[getrootbase() + getaccidentalsvalue()];
+                var letter = findLetter(convertToMelody(base_int, offset));
+                return letter + "  " + obj.smartinfo.name.split("or")[0] + " " + " ".nth(obj.smartinfo.inversion) + " Inv"
+            }
+            return getrootbase() + getaccidentalsvalue() + " " + obj.smartinfo.name.split("or")[0];//obj._info[("col1")].data[0];
+        }
+        var scaleText = function (obj, id) {
+            var scaleinfo = getScale(id);//obj._info.col2.data+ obj.smartinfo.name.split(or)[0]
+            return getBaseRoot(scaleinfo.root.toString(12)) + " " + scaleinfo.official;
+        }
+        var getBaseRoot = function (root, single) {
+            var value = parseInt(root, 12);
+            var base_int = library[getrootbase() + getaccidentalsvalue()];
+            var resut = (base_int - value) % 12;
+            if (resut < 0) {
+                resut += 12;
+            }
+            var results = "";
+            for (var i in library) {
+                if (library[i] == resut) {
+                    if (results == "")
+                        results += i;
+                    else {
+                        results += "/" + i;
+                    }
+                    if (single) {
+                        break;
+                    }
+                }
+            }
+            return results;
+        }
+        var getSelectedScales = function () {
+            var list = [];
+            $("input[name=scales_radio]").each(function (s, e) {
+                var ischecked = $(e).attr('checked');
+                if (ischecked)
+                    list.push($(e).val());
+            });
+            return list;
+        }
+
+        $cc.runtime.getSelectedScales = getSelectedScales;
+        var getrootbase = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].key;
+                    lowest = temp;
+                }
+            }
+            return base;
+            // return output;
+        }
+        var getrootoctave = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].octave;
+                    lowest = temp;
+                }
+            }
+            return base;
+            // return output;
+        }
+        var getKeyValue = function (melodyobject) {
+            return library[melodyobject.key + melodyobject.accidental] + melodyobject.octave * 12;
+        }
+        var _rootbase = null;
+        var setrootbase = function (value) {
+            _rootbase = value;
+        }
+        var _rootocatave = null;
+        var setoctaverootbase = function (value) {
+            _rootocatave = value;
+        }
+        var _rootaccidental = "";
+        var setaccidental = function (value) {
+            _rootaccidental = value;
+        }
+        var calculateV = function () {
+            var base_int = library[(getrootbase() + getaccidentalsvalue()).trim()];
+            var sorted = melodylist.sort(function (a, b) {
+                var val_a = library[a.key + a.accidental] + a.octave * 12;
+                var val_b = library[b.key + b.accidental] + b.octave * 12;
+                return val_a - val_b;
+            });
+            var result = ["00"];
+            var base_int = library[(sorted[0].key + sorted[0].accidental).trim()];
+            for (var i = 1; i < sorted.length; i++) {
+                result.push(converttoBase12(getKeyValue(sorted[i]) - getKeyValue(sorted[0])));
+            }
+
+            return (result);
+        }
+
+        var refreshmelodylist = function () {
+            $(".melodylist").html("");
+            //$(".melodylist").append($("<li>", {
+            //    text: "Melody",
+            //    "role": "heading",
+            //    "data-role": "divider",
+            //    "class": "ui-bar-f"
+            //}));
+            //$(".melodylist").append($("<li>", {
+            //    text: "[" + (getrootbase() + getaccidentalsvalue()) + "/" + getrootoctave() + "]",
+            //}));
+            for (var i = 0; i < melodylist.length; i++) {
+                $(".melodylist").append($("<a>", {//($("<li>").append
+                    "data-role": "button",
+                    "data-icon": "delete",
+                    "data-mini": true,
+                    href: "#",
+                    text: (melodylist[i].key + melodylist[i].accidental + "/" + melodylist[i].octave),
+                    click: (function () {
+                        var index = findmelodyindex(melodylist, this.key, this.accidental, this.octave)
+                        if (index != -1) {
+                            melodylist.splice(index, 1);
+                            refreshmelodylist();
+                            refresh();
+                        }
+                    }).bind(melodylist[i])
+                }));//);
+            }
+
+            $(".melodylist").trigger("create");
+            // $(".melodylist").trigger("refresh");
+        }
+        var findmelody = function (list, a, b, octa) {
+            for (var i = list.length; i--;) {
+                if (list[i].key == a && list[i].accidental == b && list[i].octave == octa) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        var findmelodyindex = function (list, a, b, c) {
+            for (var i = list.length; i--;) {
+                if (list[i].key == a && list[i].accidental == b && list[i].octave == c) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        var accidentals = [htmlDecode("&#x266e;"), htmlDecode('&#x266d;'), htmlDecode('&#x266F;')];
+        $cc.variables.accidentals = accidentals;
+        $cc.runtime.converttoBase12 = converttoBase12;
+        for (var i = 0; i < accidentals.length; i++) {
+            var input = $("<input >", { class: 'accidentals', type: "radio", name: "radio_accidental", id: "radio_accidental" + i, value: natural == accidentals[i] ? " " : accidentals[i], click: function (s) { refresh(); } });
+            var label = $("<label>", { class: 'accidentals', "for": "radio_accidental" + i, text: accidentals[i] });
+            $("#accidentals").append(input).append(label);
+        }
+        $("#accidentals").trigger("refresh");
+        var getaccidentalsvalue = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].accidental;
+                    lowest = temp;
+                }
+            }
+            return base;
+        }
+        for (var i = 0; i < accidentals.length; i++) {
+            var input = $("<input >", {
+                class: 'accidentals', type: "radio", name: "keygroup_accidentals", id: "keygroup_accidentals" + i, value: natural == accidentals[i] ? " " : accidentals[i],
+                click: (function (s, e) {
+
+                    selectedaccidental = this;
+                }.bind(natural == accidentals[i] ? " " : accidentals[i]))
+            });
+            var label = $("<label>", { class: 'accidentals', "for": "keygroup_accidentals" + i, text: accidentals[i] });
+            $("#keygroup_accidentals").append(input).append(label);
+        }
+        $("#keygroup_accidentals").trigger("refresh");
+
+        var octaves = [1, 2, 3, 4, 5, 6, 7];
+        var selectedoctave = 4;
+        for (var i = 0 ; i < octaves.length ; i++) {
+            var input = $("<input >", {
+                class: 'accidentals',
+                type: "radio",
+                name: "keygroup_octaves",
+                id: "keygroup_octaves" + i, value: octaves[i],
+                click: (function (s, e) {
+                    selectedoctave = this;
+                }.bind(octaves[i]))
+            });
+            var label = $("<label>", { class: 'accidentals', "for": "keygroup_octaves" + i, text: octaves[i] });
+            $("#keygroup_octaves").append(input).append(label);
+        }
+        $("#keygroup_octaves").trigger("refresh");
+
+
+        //keygroup_triads
+        var triads = [{ text: "", triad: [] },
+                { text: "major", triad: ["0", "4", "7"] },
+                { text: "minor", triad: ["0", "3", "7"] },
+                { text: "dim", triad: ["0", "3", "6"] },
+                { text: "aug", triad: ["0", "4", "8"] },
+                { text: "sus4", triad: ["0", "5", "7"] },
+                { text: "sus2", triad: ["0", "2", "7"] },
+                { text: "flat2nd", triad: ["0", "1", "7"] },
+                { text: "sharp4th", triad: ["0", "6", "7"] }];
+        selectedTriad = triads[0];
+        for (var i = 0 ; i < triads.length ; i++) {
+            var input = $("<input>", {
+                type: 'radio',
+                name: 'keygroup_triads',
+                id: 'keygroup_triads' + i,
+                value: triads[i].text,
+                click: function () {
+                    selectedTriad = this;
+                }.bind(triads[i])
+            });
+            var label = $("<label>", {
+                class: 'triads',
+                "for": "keygroup_triads" + i,
+                text: triads[i].text
+            });
+            $("#keygroup_triads").append(input).append(label);
+        }
+        $("#keygroup_triads").trigger("refresh");
+
+        var triadExt = [{ text: "", ext: [] },
+                        { text: "Maj 7th", ext: ["b"] },
+                        { text: "Dom 7th", ext: ["a"] },
+                        { text: "Maj 9th", ext: ["b", "12"] },
+                        { text: "Dom 9th", ext: ["a", "12"] },
+                        { text: "Maj 11th", ext: ["b", "12", "15"] },
+                        { text: "Dom 11th", ext: ["a", "12", "15"] }];
+        selectedTriadExt = triadExt[0];
+        for (var i = 0 ; i < triadExt.length ; i++) {
+            var input = $("<input>", {
+                type: 'radio',
+                name: 'keygroup_triadsext',
+                id: 'keygroup_triadsext' + i,
+                value: triadExt[i].text,
+                click: function () {
+                    selectedTriadExt = this;
+                }.bind(triadExt[i])
+            });
+            var label = $("<label>", {
+                class: 'triadsext',
+                "for": "keygroup_triadsext" + i,
+                text: triadExt[i].text
+            });
+            $("#keygroup_triadsext").append(input).append(label);
+        }
+        $("#keygroup_triadsext").trigger("refresh");
+
+    </script>
+    <script>
+        var chordmaster = new ChordMaster.Reader();
+
+        $cc.variables.chordMaster = chordmaster;
+        var octaveoneshifted = 0;
+        var octavetwoshifted = 0;
+        chordmaster.add_oncomplete(function () {
+            // <input type="radio" name="radio-choice-2" id="radio-choice-21" value="choice-1" checked="checked" />
+            // <label for="radio-choice-21">Cat</label> 
+
+            for (var i = 0; i < chordmaster._scales.length; i++) {
+                var input = $("<input >", {
+                    type: "checkbox",
+                    name: "scales_radio",
+                    id: "scales_radio" + i,
+                    value: chordmaster._scales[i],
+                    text: chordmaster._scales[i],
+                    click: function () { refresh(); }
+                });
+                var label = $("<label>", { "for": "scales_radio" + i, text: chordmaster._scales[i] });
+                $("#scales_").append(input).append(label);
+            }
+            $("#scales_").trigger("create");
+
+            $("#popupBasic").hide();
+        });
+        var loader = new widgets.Loader({
+            message: "loading: Soundfont..."
+        });
+        loader.stop();
+        $(document).ready(function () {
+
+            var selectingscales = false;
+
+            var createOctaveShift = function (spaceselector, name, start, stop, setfunc) {
+                for (var i = start; i <= stop ; i++) {
+                    var input = $("<input >", {
+                        type: "radio",
+                        name: name,
+                        id: name + i,
+                        value: i
+                    });
+                    var label = $("<label>", { "for": name + i, text: i });
+                    $(spaceselector).append(input).append(label);
+                    $("input[name=" + name + "]").click(function () {
+                        $("input[name=" + name + "]").each(function (s, e) {
+                            var ischecked = $(e).attr('checked');
+                            if (ischecked) {
+                                setfunc($(e).val());
+                            }
+                        });
+
+                    });
+                }
+                $(spaceselector).trigger("create");
+            };
+
+            $("#popupBasic").show();
+            $("#biasflat").click(function () {
+                chordmaster.bias = flat;
+                chordmaster.renderNotes();
+            });
+            $("#musicimport").change(function () {
+
+            });
+            //$("#helplist").listview();
+            $("#biassharp").click(function () {
+                chordmaster.bias = sharp;
+                chordmaster.renderNotes();
+            });
+            $(".callasp").trigger("collapse");
+            $("#toselect").hide();
+            $("#selectmorescales").click(function () {
+                if (!selectingscales) {
+                    $("#toselect").show();
+                    $("#selectedscales").hide();
+                    selectingscales = true;
+                }
+                else {
+                    $("#toselect").hide();
+                    $("#selectedscales").show();
+                    selectingscales = false;
+                }
+                $("#selectscaleslist").html("");
+
+                $("input[name=scales_radio]").each(function (s, e) {
+                    var ischecked = $(e).attr('checked');
+                    if (ischecked)
+                        $("#selectscaleslist").append($("<li>", { text: $(e).val() }));
+                });
+                $('#selectscaleslist').listview('refresh');
+            });
+
+            $("#melodybuttons").trigger('collapse');
+            //$('#toggle').html('<H5><a href="#" class="btn">Select melody notes/chord.</a></H5>');
+            ////$("#melodybuttons").hide();
+            //$(".btn").button();
+            //$(".btn").buttonMarkup();
+
+            var setuppopout = function (name, toggle, list, btntext, x, y, movex, movey) {
+                $(toggle).toggle(function () {
+
+                    $(list).show();
+                    $(toggle).html('<H5><a href="#" class="btn">Close</a></H5>');
+                    $(".btn").button();
+                    $(".btn").buttonMarkup();
+                },
+               function () {
+                   $(toggle).html('<H5><a href="#" class="btn">' + btntext + '</a></H5>');
+                   $(list).hide();
+                   $(".btn").button();
+                   $(".btn").buttonMarkup();
+               });
+                $(toggle).html('<H5><a href="#" class="btn">' + btntext + '</a></H5>');
+                $(list).hide();
+                $(".btn").button();
+                $(".btn").buttonMarkup();
+                //});
+            }
+            setuppopout("#helppopout", "#togglehelp", "#helplist", "Help?", -40, 30, 0, 100);
+            setuppopout("", "#toggleholder", "#holderlist", "Music Import");
+            $("#scale_toggle").toggle(function () {
+
+                $("#scales_list_").show();
+                $('#scale_popout').animate({
+                    top: 0, right: 30,
+                    width: 475
+                }, 'slow', function () {
+                    $('#scale_toggle').html('<H5><a href="#" class="btn">Close</a></H5>');
+                    //  $("#melodybuttons").trigger('expand');
+                    $(".btn").button();
+                    $(".btn").buttonMarkup();
+                });
+            },
+            function () {
+                // $("#melodybuttons").trigger('collapse');
+                var width = $('#scale_popout').height();
+                $('#scale_popout').animate({
+                    top: -30, right: 30,
+                    width: 115
+                }, 'slow', function () {
+                    $('#scale_toggle').html('<H5><a href="#" class="btn">Scales</a></H5>');
+                    $("#scales_list_").hide();
+                    $(".btn").button();
+                    $(".btn").buttonMarkup();
+                });
+            });
+            $(".btn").button();
+            $('#scale_popout').animate({
+                top: -30, right: 30,
+                width: 115
+            }, 'slow', function () {
+                $('#scale_toggle').html('<H5><a href="#" class="btn">Scales</a></H5>');
+                $("#scales_list_").hide();
+                $(".btn").button();
+                $(".btn").buttonMarkup();
+            });
+            var midipluginloaded = false;
+            var playmelodyhandler = function () {
+                if (midipluginloaded == false) {
+
+                    midipluginloaded = true;
+                    playmelody();
+                }
+                else playmelody();
+            }
+            MIDI.loadPlugin(function () {
+                loader.stop();
+            });
+            $(".playmelodystaff").click(playmelodyhandler);
+            var playmelody = function () {
+                var notes = getNotes(melodylist, 100);
+                MIDI.Player.playRandomNotes(notes);
+            }
+            var playstaffnoteshandler = function () {
+                var scalenotes = chordmaster.get_scalemidinotes();
+                var chordnotes = chordmaster.get_chordmidinotes();
+                var notes = [];
+                for (var i = 0 ; i < chordnotes.length; i++) {
+                    notes.push(MIDI.Player.createNote(chordnotes[i], i == 0 ? 100 : 0));
+                }
+                notes.push(MIDI.Player.createNote(60, 1000, false));
+                for (var i = 0 ; i < scalenotes.length; i++) {
+                    notes.push(MIDI.Player.createNote(scalenotes[i], 500));
+                }
+                MIDI.Player.playRandomNotes(notes);
+            }
+            $(".playstaffnotes").click(playstaffnoteshandler);
+            var getNotes = function (list, offset, options, lastnote) {
+                var notes = [];
+                lastnote = lastnote || {};
+                lastnote.lastoffset = 0;
+                options = options || {
+                    keystyle: $cc.keystyles.chord
+                };
+                if (options.keystyle == $cc.keystyles.arpeggio_down) {
+                    list.reverse();
+                }
+                else if (options.keystyle == $cc.keystyles.chord) {
+                    var asdf = "asdf";
+                    var length = list.length;
+                    //for (var i = 0; i < length ; i++) {
+                    //    var cloned = clone(list[i]);
+                    //    cloned.noteOff = true;
+                    //    list.push(cloned);
+                    //}
+                }
+                else if (options.keystyle == $cc.keystyles.userdefined) {
+                    if (options.selectedNotes) {
+                        var endnote = [];
+                        (options.selectedNotes || []).foreach(function (x) {
+                            var length = parseInt(x[1]) + x[2]
+                            endnote.push([x[0], length.toString(), length, "end"]);
+                        });
+                        var selectednotes = (options.selectedNotes || []).concat(endnote);
+                        var orderedlist = selectednotes.orderBy(function (x, y) {
+                            var result = parseInt(x[1]) - parseInt(y[1]);
+                            if (result == 0) {
+                                return y.length - x.length;
+                            }
+                            return result;
+                        });
+                        var newlist = [];
+                        orderedlist.forEach(function (x, index) {
+                            var result = list[Math.ceil(parseFloat(x[0]))];
+                            if (x[3] == "end") {
+                                result.noteOff = true;
+                            }
+                            else
+                                result.noteOff = false;
+                            result.offsetToPlay = parseInt(x[1]);
+                            if (index > 0)
+                                result.selectedNoteOffset = result.offsetToPlay - newlist[index - 1].offsetToPlay;
+                            else {
+                                result.selectedNoteOffset = 0;
+                            }
+                            result.lengthOfNote = x[2] || 1;
+                            result.velocity = x[3] || 110;
+                            result.instrument = x[4] ? x[4].programNumber : null;
+                            newlist.push(clone(result));
+                        });
+                        list = newlist;
+                        // options.selectedNotes = orderedlist;
+                    }
+                }
+                var _tempnotes = [];
+                for (var i = 0; i < list.length; i++) {
+                    var midinote = library[list[i].key + list[i].accidental] + ((parseInt(list[i].octave) + 1) * 12);
+                    var _offset = i == 0 ? offset : 0;
+                    var lengthofnote = options.lengthOfNote || (60 / options.tempo / options.selectedDivisions * 1000);
+                    if (options) {
+                        switch (options.keystyle) {
+                            case $cc.keystyles.arpeggio_down:
+                            case $cc.keystyles.arpeggio_up:
+                                var keyoffset = options.keyoffset || 20;
+                                _offset = i == 0 ? offset : (keyoffset) + 1;
+                                var appendedValueOffset = _offset;
+                                break;
+                            case $cc.keystyles.userdefined:
+                                //var keyoffset = options.keyoffset || 20;
+                                var keyoffset = 60 / options.tempo / options.selectedDivisions * 1000 * options.selectedBeat;
+                                var appendedValueOffset = keyoffset * list[i].offsetToPlay;
+                                lastnote.lastoffset = (options.selectedDivisions * keyoffset) - (list[i].offsetToPlay * keyoffset);
+                                var addin = i == 0 ? offset : 0;
+                                lengthofnote = list[i].lengthOfNote * 60 / options.tempo / options.selectedDivisions * 1000;
+                                _offset = addin + ((list[i].selectedNoteOffset * keyoffset) || 1);
+                                break;
+                            default:
+                                var keyoffset = 60 / options.tempo * 1000 * options.selectedBeat;/// options.selectedDivisions 
+                                lastnote.lastoffset = options.duration * keyoffset;
+                                var appendedValueOffset = 0;
+                                break;
+                        }
+                    }
+                    var noteoff = ($cc.keystyles.userdefined == options.keystyle || $cc.keystyles.chord == options.keystyle) && list[i].noteOff
+                    var note = MIDI.Player.createNote(midinote, _offset, !noteoff, 0);
+                    note[0].event.duration = lengthofnote;
+                    note[0].event.velocity = list[i].velocity;
+                    if (note[0].event.velocity == "end") {
+                        note[0].event.velocity = null;
+                    }
+                    if (options.appendedValues) {
+                        note[0].event.appendedValues = {};
+                        for (var ifd in options.appendedValues) {
+                            note[0].event.appendedValues[ifd] = options.appendedValues[ifd];
+                        }
+                        if (note[0].event.appendedValues.beatOffset != undefined) {
+                            var notebeatoffset = 60 / options.tempo * 1000 * note[0].event.appendedValues.boxDuration;
+                            note[0].event.appendedValues.beatOffset = note[0].event.appendedValues.beatOffset * notebeatoffset + appendedValueOffset;
+                        }
+                    }
+                    note[0].event.instrument = list[i].instrument;
+                    notes.push(note);
+                }
+                if (options.keystyle == $cc.keystyles.arpeggio_down) {
+                    list.reverse();
+                }
+                return notes;
+            }
+            $cc.runtime.getNotes = getNotes;
+            chordmaster.parseChordXml();
+            addToRuntime($cc);
+            ComposerCompanion.runtime.load();
+            $cc.variables.library = library;
+            $cc.variables.chordmaster = chordmaster;
+            ComposerCompanion.runtime.addListener('bankchange', function (args) {
+                ComposerCompanion.runtime.refreshBank(args)
+            });
+        });
+    </script>
+    <script src="Dropfile/trunk/dropfile.js"></script>
+
+</body>
+</html>

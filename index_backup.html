@@ -1,0 +1,1510 @@
+﻿<!DOCTYPE html X-UA-Compatible: IE=Edge>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="Closure/closure/goog/base.js"></script>
+    <script type="text/javascript">
+        goog.require('goog.debug.Logger');
+        goog.require('goog.debug.FancyWindow');
+    </script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <link href="Scripts/jquery.mobile-1.2.0-rc.2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="mycustomtheme.min.css" />
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script src="Scripts/jquery.mobile-1.2.0-rc.2.min.js"></script>
+    <!-- VexFlow Uncompiled Sources -->
+    <script src="Scripts/BaseLib.js"></script>
+    <script src="Vexflow/trunk/src/header.js"></script>
+    <script src="Vexflow/trunk/src/vex.js"></script>
+    <script src="Vexflow/trunk/src/flow.js"></script>
+    <script src="Vexflow/trunk/src/tables.js"></script>
+    <script src="Vexflow/trunk/src/fonts/vexflow_font.js"></script>
+    <script src="Vexflow/trunk/src/glyph.js"></script>
+    <script src="Vexflow/trunk/src/stave.js"></script>
+    <script src="Vexflow/trunk/src/staveconnector.js"></script>
+    <script src="Vexflow/trunk/src/tabstave.js"></script>
+    <script src="Vexflow/trunk/src/tickcontext.js"></script>
+    <script src="Vexflow/trunk/src/tickable.js"></script>
+    <script src="Vexflow/trunk/src/note.js"></script>
+    <script src="Vexflow/trunk/src/barnote.js"></script>
+    <script src="Vexflow/trunk/src/ghostnote.js"></script>
+    <script src="Vexflow/trunk/src/stavenote.js"></script>
+    <script src="Vexflow/trunk/src/tabnote.js"></script>
+    <script src="Vexflow/trunk/src/beam.js"></script>
+    <script src="Vexflow/trunk/src/voice.js"></script>
+    <script src="Vexflow/trunk/src/voicegroup.js"></script>
+    <script src="Vexflow/trunk/src/modifier.js"></script>
+    <script src="Vexflow/trunk/src/modifiercontext.js"></script>
+    <script src="Vexflow/trunk/src/accidental.js"></script>
+    <script src="Vexflow/trunk/src/dot.js"></script>
+    <script src="Vexflow/trunk/src/formatter.js"></script>
+    <script src="Vexflow/trunk/src/stavetie.js"></script>
+    <script src="Vexflow/trunk/src/tabtie.js"></script>
+    <script src="Vexflow/trunk/src/tabslide.js"></script>
+    <script src="Vexflow/trunk/src/bend.js"></script>
+    <script src="Vexflow/trunk/src/vibrato.js"></script>
+    <script src="Vexflow/trunk/src/annotation.js"></script>
+    <script src="Vexflow/trunk/src/articulation.js"></script>
+    <script src="Vexflow/trunk/src/tuning.js"></script>
+    <script src="Vexflow/trunk/src/stavemodifier.js"></script>
+    <script src="Vexflow/trunk/src/keysignature.js"></script>
+    <script src="Vexflow/trunk/src/timesignature.js"></script>
+    <script src="Vexflow/trunk/src/clef.js"></script>
+    <script src="Vexflow/trunk/src/music.js"></script>
+    <script src="Vexflow/trunk/src/keymanager.js"></script>
+    <script src="Vexflow/trunk/src/renderer.js"></script>
+    <script src="Vexflow/trunk/src/raphaelcontext.js"></script>
+    <script src="Vexflow/trunk/src/stavevolta.js"></script>
+    <script src="Vexflow/trunk/src/staverepetition.js"></script>
+    <script src="Vexflow/trunk/src/stavebarline.js"></script>
+    <script src="Vexflow/trunk/src/stavesection.js"></script>
+    <script src="Vexflow/trunk/src/stavehairpin.js"></script>
+    <script src="Vexflow/trunk/src/stavetempo.js"></script>
+    <script src="Vexflow/trunk/src/tremolo.js"></script>
+    <script src="MultiSelect/jquery.bgiframe.min.js"></script>
+    <script src="MultiSelect/jquery.multiSelect.js"></script>
+    <link href="MultiSelect/jquery.multiSelect.css" rel="stylesheet" />
+    <script src="Data/chord_data.js"></script>
+    <script src="Data/voices.js"></script>
+    <script src="Data/datasourcegenerator.js"></script>
+    <script src="Vexflow/trunk/vextab/vextab.js"></script>
+    <script src="Scripts/Ext/VexTab/tuninig_ext.js"></script>
+    <script src="Scripts/MusicXmlReader.js"></script>
+    <script src="Midi/trunk/js/DOMLoader.XMLHttp.js"></script>
+    <script src="Midi/trunk/js/DOMLoader.script.js"></script>
+    <script src="Midi/trunk/js/MIDI.audioDetect.js"></script>
+    <script src="Midi/trunk/js/MIDI.loadPlugin.js"></script>
+    <script src="Midi/trunk/js/MIDI.Plugin.js"></script>
+    <script src="Midi/trunk/js/MIDI.Player.js"></script>
+    <script src="Midi/trunk/js/MusicTheory.Synesthesia.js"></script>
+    <script src="Midi/trunk/js/Widgets.Loader.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/stream.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/midifile.js"></script>
+    <script src="Midi/trunk/js/lib/jasmid/jasmid/replayer.js"></script>
+    <script src="Midi/trunk/js/VersionControl.Base64.js"></script>
+    <script src="Midi/trunk/js/lib/base64binary.js"></script>
+    <script src="score-library/scorelibrary-deps.js"></script>
+    <script src="score-library/scorelibrary.js"></script>
+    <script src="score-library/scorecompression.js"></script>
+    <script src="score-library/scoreajax.js"></script>
+    <script src="score-library/scorediv.js"></script>
+    <script src="Scripts/ScoreExt.js"></script>
+    <script src="Scripts/ScoreManager.js"></script>
+    <link href="VexTab/tabdiv.css" rel="stylesheet" />
+    <link href="Data/stylesheet.css" rel="stylesheet" type="text/css" />
+    <title>Composer Companion</title>
+</head>
+<body>
+
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Composer Companion
+            </h1>
+            <div id="popupBasic">
+                <p>
+                    Loading.<img src="ajax-loader.gif" />
+                </p>
+            </div>
+        </div>
+        <!-- /header -->
+        <div data-role="content" role="main">
+
+            <div data-role="fieldcontain" data-collapsed="false">
+                <ul data-role="listview" data-inset="true" data-theme="c">
+
+
+                    <li>
+                        <div data-role="fieldcontain" id="Div4">
+                            <ul data-role="lisview" id="helplist" data-inset="true" data-theme="c">
+                                <li data-role="divider" role="heading" class="ui-bar-f">Directions</li>
+                                <li>Press the Melody button</li>
+                                <li>Cick a Key[A-G] with an optional accidental(&#x266d; | &#x266f; | &#x266e;) and select the octave for the note.</li>
+                                <li>Press the Add for more notes in the chord.</li>
+                                <li>Options will appear in the list.</li>
+                                <li>Press these options to see them on a staff.</li>
+                            </ul>
+                        </div>
+                        <div id="togglehelp">
+                            <h3>Help?</h3>
+                        </div>
+                    </li>
+                    <li data-role="divider" role="heading" class="ui-bar-f">Music Import
+                    </li>
+                    <li>
+                        <div id="toggleholder"></div>
+                        <div data-role="fieldcontain">
+                            <ul data-role="listview" id="holderlist" data-inset="true" data-theme="c">
+                                <li>
+                                    <div id="holder" style="width: 100%; height: 70px; border: dashed;">Drop here.</div>
+                                </li>
+                                <li>
+                                    <div data-role="controlgroup" data-type="horizontal">
+                                        <a href="#" data-role="button" id="prev_measure_score">Previous</a>
+                                        <a href="#" data-role="button" id="next_measure_score">Next</a>
+                                        <!--<a href="#" data-role="button" id="setbasebtn">Set Base</a>-->
+                                    </div>
+                                    <div id="curentpage_score"></div>
+                                </li>
+                                <li>
+                                    <canvas id="scorediv" class="scorediv" width="400" height="200"></canvas>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li data-role="divider" role="heading" class="ui-bar-f">Chord / Scales</li>
+                    <li>
+                        <div id="toggle">
+                            <h3>Melody and Base</h3>
+                        </div>
+                        <div data-role="fieldcontain" id="melodybuttons">
+                            <ul data-role="listview" data-inset="true" data-theme="c">
+                                <li data-role="divider" role="heading" class="ui-bar-f">Melody</li>
+                                <li>
+                                    <div data-role="controlgroup" data-type="horizontal">
+                                        <a href="#" data-role="button" id="addmelodybtn">Add</a>
+                                        <a href="#" data-role="button" id="clearmelodybtn">Clear</a>
+                                        <a href="#" data-role="button" class="playmelodystaff" id="playmelodybtn">Play</a>
+                                        <!--<a href="#" data-role="button" id="setbasebtn">Set Base</a>-->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ui-grid-b">
+                                        <div class="ui-block-a" data-role="fieldcontain">
+                                            <fieldset data-role="controlgroup" id="keygroup_melody">
+                                            </fieldset>
+                                        </div>
+                                        <div class="ui-block-b">
+                                            <div data-role="fieldcontain">
+                                                <fieldset data-role="controlgroup" id="keygroup_accidentals">
+                                                </fieldset>
+                                            </div>
+                                            <div data-role="fieldcontain">
+                                                <fieldset data-role="controlgroup" id="keygroup_octaves" data-type="horizontal">
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="ui-block-c">
+                                            <div data-role="fieldcontain" id="melodyarea">
+                                                <ul data-role="listview" class="melodylist" data-theme="a">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div data-role="fieldcontain" id="Div2">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-type="horizontal">
+                                    <legend>Clef : </legend>
+                                    <input type="radio" name="CleffChoice" id="RadioTreble" value="treble" checked="checked" />
+                                    <label for="RadioTreble">Treble</label>
+                                    <input type="radio" name="CleffChoice" id="RadioBass" value="bass" />
+                                    <label for="RadioBass">Bass</label>
+                                    <input type="radio" name="CleffChoice" id="RadioAlto" value="alto" />
+                                    <label for="RadioAlto">Alto</label>
+                                    <input type="radio" name="CleffChoice" id="RadioTenor" value="tenor" />
+                                    <label for="RadioTenor">Tenor</label>
+
+                                </fieldset>
+                            </div>
+                            <!--<div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-type="horizontal" id="octaveshift1">
+                                    <legend>Octave Shift : </legend>
+
+                                </fieldset>
+                            </div>-->
+                            <div data-role="fieldcontain" id="Div1">
+                                <a href="#" data-role="button" class="playmelodystaff" id="playmelodystaff">Play</a>
+                                <canvas id="melodystaffcanvas" height="200" width="400" />
+                                <ul data-role="listview" class="melodylist" id="melodylist" data-theme="a">
+                                </ul>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+                                <legend>Clef : </legend>
+                                <input type="radio" name="CleffChoice2" id="RadioTreble2" value="treble" checked="checked" />
+                                <label for="RadioTreble2">Treble</label>
+                                <input type="radio" name="CleffChoice2" id="RadioBass2" value="bass" />
+                                <label for="RadioBass2">Bass</label>
+                                <input type="radio" name="CleffChoice2" id="RadioAlto2" value="alto" />
+                                <label for="RadioAlto2">Alto</label>
+                                <input type="radio" name="CleffChoice2" id="RadioTenor2" value="tenor" />
+                                <label for="RadioTenor2">Tenor</label>
+
+                            </fieldset>
+                        </div>
+                        <!--  <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup" data-type="horizontal" id="octaveshift2">
+                                <legend>Octave Shift : </legend>
+
+                            </fieldset>
+                        </div>-->
+                        <div>
+                            <a href="#" data-role="button" class="playstaffnotes" id="A1">Play</a>
+                            <canvas width="400" height="200" id="staffnotes"></canvas>
+
+                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span id="chord_call_name"></span>
+                                </td>
+                                <td style="padding-left: 100px;">
+                                    <span id="scale_call_name"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+                                <legend>Bias:</legend>
+                                <input type="radio" name="radio-choice-bias" id="biasflat" value="choice-1" />
+                                <label for="biasflat">&#x266d;</label>
+
+                                <input type="radio" name="radio-choice-bias" id="biassharp" value="choice-2" checked="checked" />
+                                <label for="biassharp">&#x266f;</label>
+                            </fieldset>
+                        </div>
+                        <label for="scaleselection">Scales </label>
+                        <select name="scaleselection" id="scaleselection">
+                        </select>
+                    </li>
+                    <li>
+                        <div data-role="fieldcontain" id="Div5">
+                            <div id="paginginfo"></div>
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-icon="arrow-l" data-role="button" id="pagingback">Back</a>
+                                <a href="#" data-icon="arrow-r" data-role="button" id="pagingforward">Forward</a>
+                                <select name="scaleselection" id="pagesize">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div data-role="fieldcontain" id="results">
+                            <ul data-role="listview" data-theme="g" id="matchingresults">
+                            </ul>
+                        </div>
+                    </li>
+                    <li data-role="divider" role="heading" class="ui-bar-f">Chord Progressions</li>
+                    <li>
+                        <div data-role="fieldcontain" id="chordprogressionssection">
+                        </div>
+                    </li>
+                    <li>
+                        <div data-role="fieldcontain" id="Div3">
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="#" data-role="button" data-icon="gear" id="selectmorescales">Select</a>
+                            </div>
+                            <div id="scale_filter">
+                                <ul data-role="listview" data-inset="true" data-theme="c">
+                                    <li data-role="divider" role="heading" class="ui-bar-f">Selected Scales</li>
+                                    <li>
+                                        <div data-role="fieldcontain" id="selectedscales">
+                                            <ul data-role="listview" data-theme="g" id="selectscaleslist" data-inset="true" style="white-space: nowrap;">
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li id="toselect">
+                                        <div data-role="fieldcontain">
+                                            <ul data-role="listview" id="scales_">
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- /grid-b -->
+    </div>
+    <div data-role="footer">
+        <h3>Master of Chords</h3>
+    </div>
+    <!-- /footer -->
+    <!-- /content -->
+    </div>
+    <script>
+        if (typeof (ChordMaster) == "undefined") {
+            ChordMaster = {};
+        }
+
+        ChordMaster.Reader = function () {
+            this._readRows = [];
+            this._scales = [];
+            this._chordVoiceTypes = [];
+            this._oncompletes = [];
+            //this._canvas = $("#staffnotes")[0];
+            //this._canvas.width = $(window).width();
+            this._chordstaffcanvas = new Vex.Drawer("staffnotes");
+            //this._renderer = new Vex.Flow.Renderer(this._canvas, Vex.Flow.Renderer.Backends.CANVAS);
+            this.bias = sharp;
+        }
+        ChordMaster.Reader.prototype = {
+            raiseComplete: function () {
+                for (var i = 0; i < this._oncompletes.length; i++) {
+                    this._oncompletes[i]();
+                }
+            },
+            get_lastChords: function () {
+                return this._lastChoords;
+            },
+            add_oncomplete: function (func) {
+                this._oncompletes.push(func);
+            },
+            get_scalemidinotes: function () {
+                if (this._scalemidinotes == undefined) {
+                    return [];
+                }
+                return this._scalemidinotes;
+            },
+            get_chordmidinotes: function () {
+                if (this._chordmidinotes == undefined) {
+                    return [];
+                }
+                return this._chordmidinotes;
+            },
+            renderNotes: function (_chords) {
+                var chords = _chords;
+                if (chords == undefined) {
+                    chords = this._lastChoords;
+                    if (this._lastChoords == undefined) {
+                        return;
+                    }
+                }
+                else {
+                    this._lastChoords = chords;
+                }
+                //var renderer = this._renderer;
+                //var ctx = renderer.getContext();
+                //ctx.clearRect(0, 0, this._canvas.width, this._canvas.height)
+                //var stave = new Vex.Flow.Stave(0, 0, 350);
+                //stave.addClef(selectedcleffchoice2);
+                //stave.setContext(ctx).draw();
+
+                var scalelib = createScaleLib();
+                var baseroot = (library[getrootbase() + getaccidentalsvalue()]);
+                var _d = getrootbase() + getaccidentalsvalue(); // getBaseRoot(chords._info.col2.data);
+                var voicearray = chords._info.col0.voice._parseVoice;
+                var chord_scale_info = chords._info.col3.val();
+                var notes = [_d];
+                var notes_copy = [_d];
+                var octave_offset = [getrootoctave() - 4];
+                for (var i = 1; i < voicearray.length; i++) {
+                    var note = findLetter(convertToMelody(baseroot, parseInt(voicearray[i])));
+                    notes.push(note);
+                    notes_copy.push(note);
+                    octave_offset.push(octave_offset[0] + Math.floor((baseroot + parseInt(voicearray[i])) / 12));
+                }
+                var currentscale = getScale(chords.selectedScale);
+                var scale_ = currentscale.base12;//chords._info.col3._val.convertToMetric();
+                var base7 = currentscale.base7.split(" ").removeEmpties();
+                var scale_start = getBaseRoot(currentscale.root.toString(12).toUpperCase(), true);;
+                var scale_notes = [];
+                var scale_notes_copy = [];
+                var scale_octave_offset = null;
+                var scaleprintnotes = [];
+                var scalemidinotes = [];
+                for (var i = 0; i < scale_.length; i++) {
+                    scale_notes.push(findLetter(convertToMelody(library[scale_start], parseInt(scale_[i])), this.bias, base7[i]));
+                    scale_notes_copy.push(findLetter(convertToMelody(library[scale_start], parseInt(scale_[i])), this.bias, base7[i]));
+                    if (scale_octave_offset == null) {
+                        scale_octave_offset = [0];
+                    }
+                    else {
+                        scale_octave_offset.push(Math.floor((library[scale_start] + parseInt(scale_[i])) / 12));
+                    }
+                    var base_offset = 4;
+                    switch (selectedcleffchoice2) {
+                        case "alto":
+                            base_offset = 4;
+                            break;
+                        case "bass":
+                            base_offset = 2;
+                            break;
+                        case "tenor":
+                            base_offset = 4;
+                    }
+                    scaleprintnotes.push(scale_notes[i] + '/' + ((scale_octave_offset[i] + base_offset)));
+                    scalemidinotes.push(library[scale_notes[i]] + ((parseInt(((scale_octave_offset[i] + base_offset))) + 1)) * 12);
+                }
+                this._scalemidinotes = scalemidinotes;
+                notes = fitNotesTo(notes, scale_notes);
+                notes_copy = fitNotesTo(notes, scale_notes);
+
+                var chordnotelist = [];
+                var chordmidinotes = [];
+                for (var i = 0 ; i < notes.length; i++) {
+                    chordnotelist.push(notes[i] + "/" + (octave_offset[i] + 4));
+                    chordmidinotes.push(library[notes[i]] + (octave_offset[i] + 4 + 1) * 12);
+                }
+                this._chordmidinotes = chordmidinotes;
+                var generateCodeInside = function (chords, scale, clef) {
+                    var vextab_code = "tabstave notation=true  tablature=false clef=" + clef + " \r\n" +
+                                      "notes ;1 :w (";
+                    for (var i = 0; i < chords.length; i++) {
+                        vextab_code += chords[i];
+                        if (i != chords.length - 1) {
+                            vextab_code += ".";
+                        }
+                    }
+                    vextab_code += ")";
+                    vextab_code += " \r\n tabstave notation=true  tablature=false clef=" + clef + " \r\n";
+                    vextab_code += "notes ;1  :8d [ ";
+                    for (var i = 0 ; i < scale.length; i++) {
+                        vextab_code += scale[i];
+                        if (i != scale.length - 1) {
+                            vextab_code += " ";
+                        }
+                    }
+                    vextab_code += " ]  \r\n";
+                    return vextab_code;
+                }
+                var gencode = generateCodeInside(chordnotelist, scaleprintnotes, selectedcleffchoice2);
+                this._chordstaffcanvas.draw(gencode);
+                //var _notes = notes.toLower().replace(sharp, "#").replace(flat, "b");
+                //scale_notes = scale_notes.toLower().replace(sharp, "#").replace(flat, "b");
+                //var shownotes = []; 
+                //var scale_run = [];
+                //var up = false;
+                //var count = 0;
+                //var in4 = true;
+                //var linehit = false;
+
+            },
+            findMatches: function (v, scales, page, pagesize) {
+                if (pagesize == undefined) {
+                    pagesize = 10;
+                }
+                var matches = [];
+                for (var i = this._readRows.length; i--;) {
+                    if (this._readRows[i].get("col0").success && this._readRows[i].get("col0").voice.matches(v)) {
+                        if (scales.length == 0 || scales.indexOf(this._readRows[i]._info.col3._name) != -1 || shouldShow(scales, this._readRows[i]._info.col3._scales)) {
+                            matches.push(this._readRows[i]);
+                        }
+                    }
+
+                }
+                lastpage = Math.ceil(matches.length / pagesize);
+                $("#paginginfo").html("<span>" + (page + 1) + " of " + (lastpage) + "</span>");
+                var result = [];
+                for (var i = page * pagesize ; i < (page + 1) * pagesize; i++) {
+                    if (i >= 0 && matches.length > i) {
+                        result.push(matches[i]);
+                    }
+                }
+                return result;
+            },
+            convertToJSON: function (xml) {
+                var rows = $(xml.xml).find("Row");
+                var result = { rows: [] }
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = $(rows[i]).find("Cell");
+                    var row = [];
+                    for (var j = 0; j < cells.length; j++) {
+                        row.push(cells[j].innerText);
+                    }
+                    result.rows.push(row);
+
+                }
+                var _result = JSON.stringify(result);
+            },
+            parseChordXml: function (xml) {
+                //find every Tutorial and print the author
+                this._readRows = [];
+                var rows = mster_coord_data.rows;
+
+                var info = parseXml();
+                var copy = info;
+                var length = rows.length;
+                var chunk = info.splice(0, 20);
+                var chunklength = chunk.length;
+                var newlength = rows.length;
+                var chunkalator = (function () {
+                    for (var i = chunk.length; i--;) {
+                        this.parseRow(i, rows[0], chunk[i]);
+                    }
+                    if (info.length > 0) {
+                        chunk = info.splice(0, 20);
+                        setTimeout(chunkalator, 50);
+                    }
+                    else
+                        this.raiseComplete();
+                }).bind(this);
+
+                for (var i in bosslist) {
+                    this._scales.push(bosslist[i][0].official);
+                }
+                setTimeout(chunkalator, 50);
+
+                // Output:
+                // The Reddest
+                // The Hairiest
+                // The Tallest
+                // The Fattest
+            },
+            parseRow: function (index, body, newbody) {
+                var rowinfo = new ChordMaster.RowInfo();
+                var _scaleinfo = bosslist;
+                rowinfo.smartinfo = newbody;
+                for (var e = 0; e < body.length; e++) {
+                    var content = body[e];
+                    switch (e) {
+                        case 0:
+                            rowinfo.set("col0", ChordMaster.ParseVoice(content, newbody));
+                            break;
+                        case 1:
+                            rowinfo.set("col1", ChordMaster.ParseChordNames(content, newbody));
+                            break;
+                        case 2:
+                            rowinfo.set("col2", ChordMaster.ParseCoordAt(content, newbody));
+                            break;
+                        case 3:
+                            rowinfo.set("col3", ChordMaster.ParseScaleInfo(content, newbody));
+                            break;
+                        case 4:
+                            rowinfo.set("col4", ChordMaster.ParseConnectionData(content, newbody));
+                            break;
+                        case 5:
+                            rowinfo.set("col5", ChordMaster.ParseConnectionData(content, newbody));
+                            break;
+                        case 6:
+                            rowinfo.set("col6", ChordMaster.ParseConnectionData(content, newbody));
+                            break;
+                        case 7:
+                            rowinfo.set("col7", ChordMaster.ParseConnectionData(content, newbody));
+                            break;
+                    }
+                }
+                this._readRows.push(rowinfo);
+                //var info = rowinfo.get("col3");
+                //if (this._scales.indexOf(info.scaleName()) == -1) {
+                //    this._scales.push(info.scaleName());
+                //}
+                var voiceinfo = rowinfo.get("col0");
+                if (!containsType(this._chordVoiceTypes, voiceinfo.voice)) {
+                    this._chordVoiceTypes.push(voiceinfo);
+                }
+            }
+        };
+        ChordMaster.ParseScaleInfo = function (data, newdata) {
+            if (newdata == undefined) {
+                var scale = "scale";
+                var Scale = "Scale";
+                var Tone = "Tone";
+                var one = "1";
+                var length = 4;
+                var index = data.indexOf(scale);
+                var index = index == -1 ? data.indexOf(Scale) : index;
+                var index = index == -1 ? data.indexOf(Tone) : index;
+                var addone = 1;
+                if (index == -1) {
+                    length = 1;
+                    addone = -1;
+                }
+                var index = index == -1 ? data.indexOf(one) : index;
+                if (index == -1) {
+                    return data;
+                }
+                var scalenamem = data.substring(0, index);
+                var _scale = data.substring(index + length + addone, data.length);
+                var s = new ChordMaster.Scale(scalenamem);
+                s.val(_scale);
+                return s;
+            }
+            else {
+                var s = new ChordMaster.Scale();
+                s.setScales(newdata.scales);
+                return s;
+            }
+
+        };
+        ChordMaster.ParseVoice = function (data, moredata) {
+            var voice = new ChordMaster.Voice(data, moredata);
+            return { success: true, voice: voice };
+        };
+        ChordMaster.Scale = function (name) {
+            if (name) {
+                this._val = null;
+                this._name = name.trim();
+            }
+
+        }
+        ChordMaster.Scale.prototype = {
+            setScales: function (value) {
+                this._scales = value;
+            },
+            val: function (value) {
+                if (value == undefined) {
+                    return this._val;
+                }
+                if (Object.prototype.toString.call(value) === '[object Array]') {
+                    this._val = value;
+                }
+                else {
+                    this._val = value.split(" ").clean("");
+                }
+            },
+            scaleName: function () {
+                return this._name;
+            }
+        };
+        ChordMaster.Voice = function (voice, betterdata) {
+            if (betterdata == undefined) {
+                this._voice = voice;
+                this.parse();
+            }
+            else {
+                this._voice = betterdata.voice;//.convertToVVoice();
+                this._parseVoice = betterdata.voice;
+            }
+        }
+        ChordMaster.Voice.prototype = {
+            parse: function () {
+                this._parseVoice = this._voice.split("").clean(" ");
+            },
+            matches: function (array) {
+                //if (array.length > this._parseVoice.length) {
+                //    return false;
+                //}
+                var lastj = 0;
+                var found_i = false;
+                for (var i = 0; i < array.length  ; i++) {
+                    for (var j = lastj ; j < this._parseVoice.length; j++) {
+                        if (parseInt(array[i].toLowerCase(), 12) == (this._parseVoice[j])) {
+                            found_i = true;
+                            break;
+                        }
+                    }
+                    j = lastj
+                    if (found_i == false) {
+                        return false;
+                    }
+                    found_i = false;
+                }
+                return true;
+            },
+            equals: function (that) {
+                return this._voice == that._voice;
+            }
+        };
+
+        ChordMaster.ParseChordNames = function (data, newdata) {
+            var or = "or";
+            var names = data.split(or);
+            if (newdata != undefined) {
+                var names = newdata._familyname.split(or);
+                if (newdata.isInversion) {
+                    for (var i = names.length; i--;) {
+                        names[i] = names[i] + "".nth(newdata.inversion);
+                    }
+                }
+            }
+            return {
+                success: true,
+                data: ChordMaster.ParseChordName(names)
+            };
+        };
+        ChordMaster.ParseChordName = function (data) {
+            return data;
+        }
+        ChordMaster.ParseCoordAt = function (data, newdata) {
+            var phrase = "Chord Root at ";
+            var phrase3 = " Chord Root at ";
+            var phrase2 = " of";
+            var index = data.indexOf(phrase3);
+            index = index == -1 ? data.indexOf(phrase) : index;
+            var index2 = data.indexOf(phrase2);
+            if (index == -1 || index2 == -1 || index2 < (index + phrase.length)) {
+                var _d = data.substring(index + phrase.length, data.length).trim();
+                _d = _d == "11" ? "0B" : _d;
+                _d = _d == "10" ? "0A" : _d;
+                return {
+                    success: true,
+                    orgdata: data,
+                    data: _d
+                }
+            }
+            else {
+                var _d = data.substring(index + phrase.length, index2);
+                _d = _d == "11" ? "0B" : _d;
+                _d = _d == "10" ? "0A" : _d;
+                return {
+                    success: true,
+                    orgdata: data,
+                    data: _d
+                }
+            }
+        };
+
+        ChordMaster.ParseConnectionData = function (data, newdata) {
+            var phrase = "Chord Root at ";
+            var phrase2 = " of";
+            var index = data.indexOf(phrase);
+            var index2 = data.indexOf(phrase2);
+            if (index == -1 || index2 == -1 || index2 < (index + phrase.length)) {
+                return data;
+            }
+            else {
+                var modified = data.substring(0, index);
+                var array = modified.split(",").trim().clean("").clean(" ").clean();
+                var result = [];
+                for (var i = array.length; i--;) {
+                    var voice_chord = ChordMaster.ParseVoiceOrChord(array[i], newdata);
+                    result.push(voice_chord);
+                }
+
+            }
+            return result;
+        }
+
+        ChordMaster.ParseVoiceOrChord = function (data, newdata) {
+            if (data.substring(0, 1) == "V") {
+                return { type: "voice", data: ChordMaster.ParseVoice(data, newdata) };
+            }
+            return { type: "chord", data: ChordMaster.ParseChordNames(data, newdata) };
+        }
+
+        ChordMaster.RowInfo = function () {
+            this._info = {};
+        }
+        ChordMaster.RowInfo.prototype = {
+            set: function (type, value) {
+                if (value != "")
+                    this._info[type] = value;
+            },
+            get: function (type) {
+                return this._info[type];
+            }
+        }
+        ChordMaster.CellInfo = function (type) {
+            this._type = type;
+            this._value = null;
+        }
+        ChordMaster.CellInfo.prototype = {
+            value: function (val) {
+                if (val == undefined) {
+                    return this._value;
+                }
+                this._value = val;
+            }
+        }
+    </script>
+    <script>
+        for (var i = 0; i < key.length; i++) {
+            var input = $("<input>", {
+                type: "radio", name: "radio_keygroup", id: "radio_keygroup" + i, value: key[i], click: function (s) {
+                    refresh();
+                }
+            });
+            var label = $("<label>", { "for": "radio_keygroup" + i, text: key[i] });
+            $("#keygroup").append(input).append(label);
+        }
+        for (var i = 0; i < key.length; i++) {
+            var input = $("<input>", {
+                type: "radio", name: "keygroup_melody", id: "keygroup_melody" + i, value: key[i], click: (function (s, e) {
+
+                    $("input[name=keygroup_melody]").each(function (s, e) {
+                        var ischecked = $(e).attr('checked');
+                        if (ischecked) {
+                            selectedmelody = $(e).val();
+
+                        }
+                    });
+                })
+            });
+            var label = $("<label>", { "for": "keygroup_melody" + i, text: key[i] });
+            $("#keygroup_melody").append(input).append(label);
+        }
+        selectedmelody = null;
+        selectedaccidental = "";
+        $("#keygroup_melody").trigger("refresh");
+        $("#keygroup").trigger("refresh");
+        var melodylist = [];
+        $("#clearmelodybtn").click(function () {
+            melodylist = [];
+            refreshmelodylist();
+            $("#matchingresults").html("");
+            if (getrootbase() == null) { return; }
+            var v = calculateV();
+            var scales = getSelectedScales();
+            refreshOptionsList(v, scales);
+        });
+        $("#addmelodybtn").click(function () {
+            if (!findmelody(melodylist, selectedmelody, selectedaccidental.trim(), selectedoctave)) {
+                var obj = { key: selectedmelody, accidental: selectedaccidental.trim(), octave: selectedoctave };
+                melodylist.push(obj);
+                refreshmelodylist();
+                if (getrootbase() == null) { return; }
+                var v = calculateV();
+                var scales = getSelectedScales();
+                refreshOptionsList(v, scales);
+            }
+        });
+        //$("#setbasebtn").click(function () {
+        //    setrootbase(selectedmelody);
+        //    setaccidental(selectedaccidental);
+        //    setoctaverootbase(selectedoctave);
+        //    refreshmelodylist();
+        //    if (getrootbase() == null) { return; }
+        //    var v = calculateV();
+        //    var scales = getSelectedScales();
+        //    refreshOptionsList(v, scales);
+        //});
+        var refresh = function () {
+            if (getrootbase()) {
+                var v = calculateV();
+                var scales = getSelectedScales();
+                refreshOptionsList(v, scales);
+            }
+        }
+        var melodystaffcanvas = new Vex.Drawer("melodystaffcanvas");
+        var generateCode = function (list) {
+            var vextab_code = "tabstave notation=true  tablature=false clef=" + selectedcleffchoice + " \r\n" +
+                              "notes ;1 :w (";
+            for (var i = 0; i < list.length; i++) {
+                vextab_code += list[i].key + list[i].accidental + "/" + list[i].octave;
+                if (i != list.length - 1) {
+                    vextab_code += ".";
+                }
+            }
+            vextab_code += ") \r\n";
+            return vextab_code;
+        }
+        var selectedcleffchoice = "treble";
+        $("input[name=CleffChoice]").change(function () {
+            $("input[name=CleffChoice]").each(function (s, e) {
+                var ischecked = $(e).attr('checked');
+                if (ischecked) {
+                    selectedcleffchoice = $(e).val();
+                }
+            });
+            refresh();
+        });
+        var selectedcleffchoice2 = "treble";
+        $("input[name=CleffChoice2]").change(function () {
+            $("input[name=CleffChoice2]").each(function (s, e) {
+                var ischecked = $(e).attr('checked');
+                if (ischecked) {
+                    selectedcleffchoice2 = $(e).val();
+                }
+            });
+
+            chordmaster.renderNotes();
+        });
+        var currentpage = 0;
+        var lastpage = 0;
+        var pagingsize = 5;
+        $("#pagingback").click(function () {
+            currentpage--;
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            refresh();
+        });
+        $("#pagingforward").click(function () {
+            currentpage++;
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            refresh();
+        });
+        $("#pagesize").change(function (e) {
+            pagingsize = parseInt($("#pagesize").val());
+            refresh();
+            if (currentpage < 0) {
+                currentpage = lastpage - 1;
+            }
+            if (currentpage >= lastpage) {
+                currentpage = 0;
+            }
+            refresh();
+        });
+
+        var refreshOptionsList = function (v, scales) {
+            var matches = chordmaster.findMatches(v, scales, currentpage, pagingsize);
+            var sorted = melodylist.sort(function (a, b) {
+                var val_a = library[a.key + a.accidental] + a.octave * 12;
+                var val_b = library[b.key + b.accidental] + b.octave * 12;
+                return val_a - val_b;
+            });
+            var code = generateCode(sorted)
+            melodystaffcanvas.draw(code);
+            $("#matchingresults").html("");
+            var added = [];
+            for (var i = matches.length; i--;) {
+                var _Text = tonicetext(matches[i]);
+                if (added.indexOf(_Text) == -1) {
+                    added.push(_Text);
+                    $("#matchingresults").append($("<li>", {
+                        click:
+                        (function () {
+                            $("#scaleselection").html("");
+                            var possible_scales = [];
+                            var selectedscales = getSelectedScales();
+                            for (var i = 0; i < this.smartinfo.scales.length; i++) {
+                                if (shouldShow(selectedscales, [this.smartinfo.scales[i]]) || selectedscales.length == 0)
+                                    //if (possible_scales.indexOf(getScaleName(this.smartinfo.scales[i])) == -1)
+                                {
+                                    var option = $("<option>",
+                                         {
+                                             value: this.smartinfo.scales[i],
+                                             text: scaleText(this, this.smartinfo.scales[i]),//getScaleName(this.smartinfo.scales[i]),
+                                             selected: i == 0 ? true : false
+                                         })
+                                    $("#scaleselection").append(option);
+                                    possible_scales.push(getScaleName(this.smartinfo.scales[i]));
+                                }
+                            }
+                            this.selectedScale = this.smartinfo.scales[0];
+                            $("#scaleselection").match = this;
+                            chordmaster.renderNotes(this, this.selectedScale);
+                            $('#scaleselection').val(this.smartinfo.scales[i]);
+                            $('#scaleselection').selectmenu("refresh");
+                            $("#chord_call_name").text(keyText(this, this.selectedScale));
+                            $("#scale_call_name").text(scaleText(this, this.selectedScale));
+                        }).bind(matches[i])
+                    }).append($("<a>", { style: "font-size:.75em", text: _Text, href: "#" })));
+                }
+            }
+            $("#matchingresults").listview("refresh");
+
+
+        }
+        $("#scaleselection").bind("change", function (event, ui) {
+            if (chordmaster.get_lastChords()) {
+                chordmaster.get_lastChords().selectedScale = $("#scaleselection").val();
+                $("#scale_call_name").text(scaleText(this, $("#scaleselection").val()));
+                chordmaster.renderNotes();
+            }
+        });
+        var shouldShow = function (scales, _scales) {
+            for (var i = scales.length; i--;) {
+                for (var j = _scales.length; j--;) {
+                    if (scales[i] == getScaleName(_scales[j])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        var getScaleName = function (id) {
+            for (var i in bosslist) {
+                for (var j = bosslist[i].length; j--;) {
+                    if (bosslist[i][j].id == id) {
+                        return bosslist[i][j].official;
+                    }
+                }
+            }
+            return "[Unknown]";
+        }
+        var getScale = function (id) {
+            for (var i in bosslist) {
+                for (var j = bosslist[i].length; j--;) {
+                    if (bosslist[i][j].id == id) {
+                        return bosslist[i][j];
+                    }
+                }
+            }
+        }
+        var tonicetext = function (obj) {
+            return obj.smartinfo.isInversion ? obj.smartinfo.name.split("or")[0] + " " + " ".nth(obj.smartinfo.inversion) + " Inv" : obj.smartinfo.name.split("or")[0] + " [" + getBaseRoot(obj._info.col2.data) + "]";
+        };
+        var keyText = function (obj, scaleId) {
+            if (obj.smartinfo.isInversion) {
+                var scale = getScale(scaleId);
+                var offset = obj.smartinfo.voice[obj.smartinfo.voice.length - obj.smartinfo.inversion]
+                var base_int = library[getrootbase() + getaccidentalsvalue()];
+                var letter = findLetter(convertToMelody(base_int, offset));
+                return letter + "  " + obj.smartinfo.name.split("or")[0] + " " + " ".nth(obj.smartinfo.inversion) + " Inv"
+            }
+            return getrootbase() + getaccidentalsvalue() + " " + obj.smartinfo.name.split("or")[0];//obj._info[("col1")].data[0];
+        }
+        var scaleText = function (obj, id) {
+            var scaleinfo = getScale(id);//obj._info.col2.data+ obj.smartinfo.name.split(or)[0]
+            return getBaseRoot(scaleinfo.root.toString(12)) + " " + scaleinfo.official;
+        }
+        var getBaseRoot = function (root, single) {
+            var value = parseInt(root, 12);
+            var base_int = library[getrootbase() + getaccidentalsvalue()];
+            var resut = (base_int - value) % 12;
+            if (resut < 0) {
+                resut += 12;
+            }
+            var results = "";
+            for (var i in library) {
+                if (library[i] == resut) {
+                    if (results == "")
+                        results += i;
+                    else {
+                        results += "/" + i;
+                    }
+                    if (single) {
+                        break;
+                    }
+                }
+            }
+            return results;
+        }
+        var getSelectedScales = function () {
+            var list = [];
+            $("input[name=scales_radio]").each(function (s, e) {
+                var ischecked = $(e).attr('checked');
+                if (ischecked)
+                    list.push($(e).val());
+            });
+            return list;
+        }
+        var getrootbase = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].key;
+                    lowest = temp;
+                }
+            }
+            return base;
+            // return output;
+        }
+        var getrootoctave = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].octave;
+                    lowest = temp;
+                }
+            }
+            return base;
+            // return output;
+        }
+        var getKeyValue = function (melodyobject) {
+            return library[melodyobject.key + melodyobject.accidental] + melodyobject.octave * 12;
+        }
+        var _rootbase = null;
+        var setrootbase = function (value) {
+            _rootbase = value;
+        }
+        var _rootocatave = null;
+        var setoctaverootbase = function (value) {
+            _rootocatave = value;
+        }
+        var _rootaccidental = "";
+        var setaccidental = function (value) {
+            _rootaccidental = value;
+        }
+        var calculateV = function () {
+            var base_int = library[(getrootbase() + getaccidentalsvalue()).trim()];
+            var sorted = melodylist.sort(function (a, b) {
+                var val_a = library[a.key + a.accidental] + a.octave * 12;
+                var val_b = library[b.key + b.accidental] + b.octave * 12;
+                return val_a - val_b;
+            });
+            var result = ["00"];
+            var base_int = library[(sorted[0].key + sorted[0].accidental).trim()];
+            for (var i = 1; i < sorted.length; i++) {
+                result.push(converttoBase12(getKeyValue(sorted[i]) - getKeyValue(sorted[0])));
+            }
+
+            return (result);
+        }
+
+        var refreshmelodylist = function () {
+            $(".melodylist").html("");
+            $(".melodylist").append($("<li>", {
+                text: "Melody",
+                "role": "heading",
+                "data-role": "divider",
+                "class": "ui-bar-f"
+            }));
+            //$(".melodylist").append($("<li>", {
+            //    text: "[" + (getrootbase() + getaccidentalsvalue()) + "/" + getrootoctave() + "]",
+            //}));
+            for (var i = 0; i < melodylist.length; i++) {
+                $(".melodylist").append($("<li>").append($("<a>", {
+                    "data-role": "button",
+                    "data-icon": "delete",
+                    "data-inline": "true",
+                    href: "#",
+                    text: (melodylist[i].key + melodylist[i].accidental + "/" + melodylist[i].octave),
+                    click: (function () {
+                        var index = findmelodyindex(melodylist, this.key, this.accidental, this.octave)
+                        if (index != -1) {
+                            melodylist.splice(index, 1);
+                            refreshmelodylist();
+                            refresh();
+                        }
+                    }).bind(melodylist[i])
+                })));
+            }
+
+            $(".melodylist").trigger("create");
+            // $(".melodylist").trigger("refresh");
+        }
+        var findmelody = function (list, a, b, octa) {
+            for (var i = list.length; i--;) {
+                if (list[i].key == a && list[i].accidental == b && list[i].octave == octa) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        var findmelodyindex = function (list, a, b, c) {
+            for (var i = list.length; i--;) {
+                if (list[i].key == a && list[i].accidental == b && list[i].octave == c) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        var accidentals = [htmlDecode("&#x266e;"), htmlDecode('&#x266d;'), htmlDecode('&#x266F;')];
+        for (var i = 0; i < accidentals.length; i++) {
+            var input = $("<input >", { class: 'accidentals', type: "radio", name: "radio_accidental", id: "radio_accidental" + i, value: natural == accidentals[i] ? " " : accidentals[i], click: function (s) { refresh(); } });
+            var label = $("<label>", { class: 'accidentals', "for": "radio_accidental" + i, text: accidentals[i] });
+            $("#accidentals").append(input).append(label);
+        }
+        $("#accidentals").trigger("refresh");
+        var getaccidentalsvalue = function () {
+            var lowest = 1000;
+            var base = null;
+            for (var i = 0 ; i < melodylist.length; i++) {
+                var temp = library[melodylist[i].key + melodylist[i].accidental] + melodylist[i].octave * 12;
+                if (temp < lowest) {
+                    base = melodylist[i].accidental;
+                    lowest = temp;
+                }
+            }
+            return base;
+        }
+        for (var i = 0; i < accidentals.length; i++) {
+            var input = $("<input >", {
+                class: 'accidentals', type: "radio", name: "keygroup_accidentals", id: "keygroup_accidentals" + i, value: natural == accidentals[i] ? " " : accidentals[i],
+                click: (function (s, e) {
+                    $("input[name=keygroup_accidentals]").each(function (s, e) {
+                        var ischecked = $(e).attr('checked');
+                        if (ischecked) {
+                            selectedaccidental = $(e).val();
+                        }
+                    });
+
+                })
+            });
+            var label = $("<label>", { class: 'accidentals', "for": "keygroup_accidentals" + i, text: accidentals[i] });
+            $("#keygroup_accidentals").append(input).append(label);
+        }
+        $("#keygroup_accidentals").trigger("refresh");
+
+        var octaves = [1, 2, 3, 4, 5, 6, 7];
+        var selectedoctave = 4;
+        for (var i = 0 ; i < octaves.length ; i++) {
+            var input = $("<input >", {
+                class: 'accidentals', type: "radio", name: "keygroup_octaves", id: "keygroup_octaves" + i, value: octaves[i],
+                click: (function (s, e) {
+                    $("input[name=keygroup_octaves]").each(function (s, e) {
+                        var ischecked = $(e).attr('checked');
+                        if (ischecked) {
+                            selectedoctave = $(e).val();
+                        }
+                    });
+
+                })
+            });
+            var label = $("<label>", { class: 'accidentals', "for": "keygroup_octaves" + i, text: octaves[i] });
+            $("#keygroup_octaves").append(input).append(label);
+        }
+        $("#keygroup_octaves").trigger("refresh");
+
+
+
+    </script>
+    <script>
+        var chordmaster = new ChordMaster.Reader();
+        var octaveoneshifted = 0;
+        var octavetwoshifted = 0;
+        chordmaster.add_oncomplete(function () {
+            // <input type="radio" name="radio-choice-2" id="radio-choice-21" value="choice-1" checked="checked" />
+            // <label for="radio-choice-21">Cat</label> 
+
+            for (var i = 0; i < chordmaster._scales.length; i++) {
+                var input = $("<input >", {
+                    type: "checkbox",
+                    name: "scales_radio",
+                    id: "scales_radio" + i,
+                    value: chordmaster._scales[i],
+                    text: chordmaster._scales[i],
+                    click: function () { refresh(); }
+                });
+                var label = $("<label>", { "for": "scales_radio" + i, text: chordmaster._scales[i] });
+                $("#scales_").append(input).append(label);
+            }
+            $("#scales_").trigger("create");
+
+            $("#popupBasic").hide();
+        });
+        var loader = new widgets.Loader({
+            message: "loading: Soundfont..."
+        });
+        $(document).ready(function () {
+            var scoremananger = new ScoreManager("scorediv", "#prev_measure_score", "#next_measure_score", "#curentpage_score");
+            var selectingscales = false;
+            var holder = document.getElementById('holder');
+            holder.ondragover = function () { return false; };
+            holder.ondragenter = function () { return false; };
+            holder.ondrop = function (e) {
+                e = e || window.event;
+
+                // Read from e.files, as well as e.dataTransfer
+                var files = (e.files || e.dataTransfer.files);
+
+                var s = "";
+                for (var i = 0; i < files.length; i++) {
+                    (function (i) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            //holder.innerHTML = "<li><img src='" + event.target.result + "' /> " + (files[i].name) + "</li>" + holder.innerHTML;
+                            scoremananger.Manage(files[i]);
+                        };
+                        reader.readAsDataURL(files[i]);
+                    })(i);
+                }
+
+                return false;
+            };
+            var createOctaveShift = function (spaceselector, name, start, stop, setfunc) {
+                for (var i = start; i <= stop ; i++) {
+                    var input = $("<input >", {
+                        type: "radio",
+                        name: name,
+                        id: name + i,
+                        value: i
+                    });
+                    var label = $("<label>", { "for": name + i, text: i });
+                    $(spaceselector).append(input).append(label);
+                    $("input[name=" + name + "]").click(function () {
+                        $("input[name=" + name + "]").each(function (s, e) {
+                            var ischecked = $(e).attr('checked');
+                            if (ischecked) {
+                                setfunc($(e).val());
+                            }
+                        });
+
+                    });
+                }
+                $(spaceselector).trigger("create");
+            };
+            //createOctaveShift("#octaveshift1", "octaveshiftone", -2, 2, function (ee) { octaveoneshifted = ee; });
+            //createOctaveShift("#octaveshift2", "octaveshifttwo", -2, 2, function (ee) { octavetwoshifted = ee; });
+
+            /*
+             
+                                     <input type="radio" name="OctaveShift" id="ShiftOctave0" value="-2" />
+                                     <label for="ShiftOctave0">-2</label>
+                                     <input type="radio" name="OctaveShift" id="ShiftOctave1" value="-1" />
+                                     <label for="ShiftOctave1">-1</label>
+                                     <input type="radio" name="OctaveShift" id="ShiftOctave2" value="0"  checked="checked"/>
+                                     <label for="ShiftOctave2">0</label>
+                                     <input type="radio" name="OctaveShift" id="ShiftOctave3" value="1" />
+                                     <label for="ShiftOctave3">+1</label>
+                                     <input type="radio" name="OctaveShift" id="ShiftOctave4" value="2" />
+                                     <label for="ShiftOctave4">+2</label>
+             */
+            $("#popupBasic").show();
+            $("#biasflat").click(function () {
+                chordmaster.bias = flat;
+                chordmaster.renderNotes();
+            });
+            $("#helplist").listview();
+            $("#biassharp").click(function () {
+                chordmaster.bias = sharp;
+                chordmaster.renderNotes();
+            });
+            $(".callasp").trigger("collapse");
+            $("#toselect").hide();
+            $("#selectmorescales").click(function () {
+                if (!selectingscales) {
+                    $("#toselect").show();
+                    $("#selectedscales").hide();
+                    selectingscales = true;
+                }
+                else {
+                    $("#toselect").hide();
+                    $("#selectedscales").show();
+                    selectingscales = false;
+                }
+                $("#selectscaleslist").html("");
+
+                $("input[name=scales_radio]").each(function (s, e) {
+                    var ischecked = $(e).attr('checked');
+                    if (ischecked)
+                        $("#selectscaleslist").append($("<li>", { text: $(e).val() }));
+                });
+                $('#selectscaleslist').listview('refresh');
+            });
+            $("#toggle").toggle(function () {
+
+                $("#melodybuttons").show();
+                $('#toggle').html('<H5><a href="#" class="btn">Close</a></H5>');
+                $("#melodybuttons").trigger('expand');
+                $(".btn").button({ mini: true });
+                $(".btn").buttonMarkup({ mini: true });
+                //});
+            },
+            function () {
+                $("#melodybuttons").trigger('collapse');
+                $('#toggle').html('<H5><a href="#" class="btn">Melody</a></H5>');
+                $("#melodybuttons").hide();
+                $(".btn").button({ mini: true });
+                $(".btn").buttonMarkup({ mini: true });
+            });
+            $("#melodybuttons").trigger('collapse');
+            $('#toggle').html('<H5><a href="#" class="btn">Melody</a></H5>');
+            $("#melodybuttons").hide();
+            $(".btn").button({ mini: true });
+            $(".btn").buttonMarkup({ mini: true });
+
+            var setuppopout = function (name, toggle, list, btntext, x, y, movex, movey) {
+                $(toggle).toggle(function () {
+
+                    $(list).show();
+                    $(toggle).html('<H5><a href="#" class="btn">Close</a></H5>');
+                    $(".btn").button({ mini: true });
+                    $(".btn").buttonMarkup({ mini: true });
+                },
+               function () {
+                   $(toggle).html('<H5><a href="#" class="btn">' + btntext + '</a></H5>');
+                   $(list).hide();
+                   $(".btn").button({ mini: true });
+                   $(".btn").buttonMarkup({ mini: true });
+               });
+                $(toggle).html('<H5><a href="#" class="btn">' + btntext + '</a></H5>');
+                $(list).hide();
+                $(".btn").button({ mini: true });
+                $(".btn").buttonMarkup({ mini: true });
+                //});
+            }
+            setuppopout("#helppopout", "#togglehelp", "#helplist", "Help?", -40, 30, 0, 100);
+            setuppopout("", "#toggleholder", "#holderlist", "Music Import");
+            $("#scale_toggle").toggle(function () {
+
+                $("#scales_list_").show();
+                $('#scale_popout').animate({
+                    top: 0, right: 30,
+                    width: 475
+                }, 'slow', function () {
+                    $('#scale_toggle').html('<H5><a href="#" class="btn">Close</a></H5>');
+                    //  $("#melodybuttons").trigger('expand');
+                    $(".btn").button({ mini: true });
+                    $(".btn").buttonMarkup({ mini: true });
+                });
+            },
+            function () {
+                // $("#melodybuttons").trigger('collapse');
+                var width = $('#scale_popout').height();
+                $('#scale_popout').animate({
+                    top: -30, right: 30,
+                    width: 115
+                }, 'slow', function () {
+                    $('#scale_toggle').html('<H5><a href="#" class="btn">Scales</a></H5>');
+                    $("#scales_list_").hide();
+                    $(".btn").button({ mini: true });
+                    $(".btn").buttonMarkup({ mini: true });
+                });
+            });
+            $(".btn").button();
+            $('#scale_popout').animate({
+                top: -30, right: 30,
+                width: 115
+            }, 'slow', function () {
+                $('#scale_toggle').html('<H5><a href="#" class="btn">Scales</a></H5>');
+                $("#scales_list_").hide();
+                $(".btn").button({ mini: true });
+                $(".btn").buttonMarkup({ mini: true });
+            });
+            var midipluginloaded = false;
+            var playmelodyhandler = function () {
+                if (midipluginloaded == false) {
+
+                    midipluginloaded = true;
+                    playmelody();
+                }
+                else playmelody();
+            }
+            MIDI.loadPlugin(function () {
+                loader.stop();
+            });
+            $(".playmelodystaff").click(playmelodyhandler);
+            var playmelody = function () {
+                var notes = getNotes(melodylist, 100);
+                MIDI.Player.playRandomNotes(notes);
+            }
+            var playstaffnoteshandler = function () {
+                var scalenotes = chordmaster.get_scalemidinotes();
+                var chordnotes = chordmaster.get_chordmidinotes();
+                var notes = [];
+                for (var i = 0 ; i < chordnotes.length; i++) {
+                    notes.push(MIDI.Player.createNote(chordnotes[i], i == 0 ? 100 : 0));
+                }
+                notes.push(MIDI.Player.createNote(60, 1000, false));
+                for (var i = 0 ; i < scalenotes.length; i++) {
+                    notes.push(MIDI.Player.createNote(scalenotes[i], 500));
+                }
+                MIDI.Player.playRandomNotes(notes);
+            }
+            $(".playstaffnotes").click(playstaffnoteshandler);
+            var getNotes = function (list, offset) {
+                var notes = [];
+                for (var i = 0; i < list.length; i++) {
+                    var midinote = library[list[i].key + list[i].accidental] + ((parseInt(list[i].octave) + 1) * 12);
+                    notes.push(MIDI.Player.createNote(midinote, i == 0 ? offset : 0));
+                }
+                return notes;
+            }
+            //$('#toggle').toggle( 
+            //function() {
+            //    $('#popout').animate({ left: 0 }, 'slow', function() {
+            //        $('#toggle').html('Close');
+            //    });
+            //}, 
+            //function() {
+            //    $('#popout').animate({ left: -40 }, 'slow', function() {
+            //        $('#toggle').html('Show');
+            //    });
+            //});​
+            chordmaster.parseChordXml();
+            //$.ajax({
+            //    url: '<%= ResolveUrl("~/Data/TextFile.txt") %>',
+            //   success: function (e, s) {
+            //      if (!cangen) {
+            //         reader.parse(e)
+            //   };
+            //      cangen = true;
+            //                },
+            //              error: function (e) {
+            //            }
+            //      });
+        });
+    </script>
+    <script src="Dropfile/trunk/dropfile.js"></script>
+</body>
+</html>
