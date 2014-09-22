@@ -20,6 +20,11 @@
 if (typeof (MIDI) === "undefined") var MIDI = {};
 if (typeof (MIDI.Plugin) === "undefined") MIDI.Plugin = {};
 
+if (window.AudioBufferSourceNode) {
+    window.AudioBufferSourceNode.prototype.noteOn = window.AudioBufferSourceNode.prototype.start;
+    window.AudioBufferSourceNode.prototype.noteOff = window.AudioBufferSourceNode.prototype.stop;
+}
+
 (function () {
     "use strict";
 
@@ -186,7 +191,7 @@ if (typeof (MIDI.Plugin) === "undefined") MIDI.Plugin = {};
             velocity = velocity || 110;
             var volume = options.volume || 0;
 
-            var gainNode = _ctx.createGainNode();
+            var gainNode = _ctx.createGain();
             //var value = -0.5 + (velocity / 100) * 2;
             var minus = (((masterVolume + volume))) * (velocity / 100);
             gainNode.connect(_ctx.destination);
